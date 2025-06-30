@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontdek de beste trailrunning routes rond Innsbruck - Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <header class="bg-white shadow-md fixed w-full z-10 top-0 left-0">
+      <nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
+  <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+    <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="assets/logos/dna-trails-logo-black.png" alt="DNA Trails Logo" class="h-8 w-auto">
+    </a>
+    <button data-collapse-toggle="mega-menu-full" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mega-menu-full" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+      </svg>
+    </button>
+    <div id="mega-menu-full" class="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+       <li><a href="#communityRun" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Community Run</a></li>
+        <li>
+          <a href="events.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent">Calendar</a>
+         </li>
+          <li>
+          <a href="about.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">About</a>
+        </li>
+        <!-- <li>
+          <button id="mega-menu-full-dropdown-button" data-collapse-toggle="mega-menu-full-dropdown" type="button" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded-sm md:w-auto hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent">
+            Other Events
+            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+            </svg>
+          </button>
+        </li> -->
+        
+    
+        <li><a href="/contact.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Contact</a></li>
+                <li><a href="/blog.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Dropdown menu -->
+<div id="mega-menu-full-dropdown" class="hidden mt-1 border-gray-200 shadow-xs bg-gray-50 md:bg-white border-y dark:bg-gray-800 dark:border-gray-600">
+  <div class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6 gap-4">
+    <ul class="space-y-2">
+      <li>
+        <a href="pages/communities/DNA-Trails.html" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+          <div class="font-semibold">DNA Trails</div>
+          <span class="text-sm text-gray-500 dark:text-gray-400">Trailrunning community</span>
+        </a>
+      </li>
+      <li>
+        <a href="pages/communities/community-placeholder.html" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+          <div class="font-semibold">Another community</div>
+          <span class="text-sm text-gray-500 dark:text-gray-400">Beschrijving hier</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="space-y-2">
+      <li>
+        <a href="pages/communities/community-placeholder.html" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+          <div class="font-semibold">Yet another</div>
+          <span class="text-sm text-gray-500 dark:text-gray-400">Nog een beschrijving</span>
+        </a>
+      </li>
+      <li>
+        <a href="pages/communities/community-placeholder.html" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+          <div class="font-semibold">Nog een</div>
+          <span class="text-sm text-gray-500 dark:text-gray-400">Extra community</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+</nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-24 pt-20">
+        <div class="bg-white rounded-lg shadow-md p-8 md:p-12 lg:p-16">
+            <nav class="text-sm text-gray-500 mb-4" aria-label="Breadcrumb">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center">
+                        <a href="blog.html" class="text-blue-600 hover:text-blue-800">Blog</a>
+                        <svg class="fill-current w-3 h-3 mx-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.476 239.029c9.373 9.372 9.373 24.568 0 33.942z"/></svg>
+                    </li>
+                    <li>
+                        <span class="text-gray-700">Ontdek de beste trailrunning routes rond Innsbruck</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <img src="https://via.placeholder.com/1200x600/D1D5DB/9CA3AF?text=Hoofdafbeelding+Blogpost" alt="Hoofdafbeelding van de blogpost" class="w-full h-64 md:h-96 object-cover rounded-lg mb-8">
+
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Ontdek de beste trailrunning routes rond Innsbruck</h1>
+
+            <div class="flex flex-wrap items-center text-sm text-gray-600 mb-6 gap-y-2">
+                <div class="flex items-center mr-4">
+                    <i class="far fa-calendar-alt mr-2"></i>
+                    <span>10 juni 2025</span>
+                </div>
+                <div class="flex items-center mr-4">
+                    <i class="far fa-user-circle mr-2"></i>
+                    <span>Door <a href="#" class="text-blue-600 hover:underline">Jane Doe</a></span>
+                </div>
+                <div class="flex items-center">
+                    <i class="far fa-clock mr-2"></i>
+                    <span>5 minuten leestijd</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+                <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">Trailrunning</span>
+                <span class="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">Natuur</span>
+                <span class="bg-purple-100 text-purple-800 text-sm font-semibold px-3 py-1 rounded-full">Innsbruck</span>
+                <span class="bg-yellow-100 text-yellow-800 text-sm font-semibold px-3 py-1 rounded-full">Bergsport</span>
+            </div>
+
+            <div class="prose prose-lg max-w-none text-gray-800">
+                <p>Innsbruck, genesteld in het hart van de Oostenrijkse Alpen, is niet alleen een stad van historie en cultuur, maar ook een absolute droombestemming voor liefhebbers van trailrunning. Met een adembenemend landschap dat varieert van zachte bospaden tot steile alpine uitdagingen, biedt de regio eindeloze mogelijkheden voor elk niveau.</p>
+
+                <h2>Waarom Innsbruck zo bijzonder is voor trailrunners</h2>
+                <p>De unieke combinatie van stedelijke voorzieningen en wilde natuur binnen handbereik maakt Innsbruck tot een toplocatie. Je kunt 's ochtends nog een espresso drinken in het stadscentrum en 's middags al kilometers maken hoog in de bergen. De trails zijn uitstekend gemarkeerd en bieden spectaculaire uitzichten op de Inn-vallei en de omliggende toppen.</p>
+
+                <h3>Onze Top 5 Trailrunning Routes</h3>
+
+                <h4>1. Nordkette Skyline Trail (Gevorderd)</h4>
+                <p>Deze uitdagende route biedt waarschijnlijk de meest spectaculaire uitzichten. Je neemt de Nordkettenbahnen omhoog naar de Hafelekar en volgt dan de ruglijn. Vereist ervaring en goede conditie. Vergeet je camera niet!</p>
+                <img src="https://via.placeholder.com/800x500/D1D5DB/9CA3AF?text=Nordkette+Skyline+Trail" alt="Nordkette Skyline Trail" class="w-full my-6 rounded-lg shadow-sm">
+
+                <h4>2. Zirbenweg (Gemiddeld)</h4>
+                <p>Een klassieker die begint bij de Patscherkofel en langs de prachtige Zirbenbossen loopt. Minder technisch dan de Nordkette, maar nog steeds met genoeg hoogtemeters om je hartslag te verhogen. Ideaal voor een langere duurloop.</p>
+
+                <h4>3. Höttinger Alm Loop (Beginner/Gemiddeld)</h4>
+                <p>Perfect voor een snelle training na het werk of een ontspannen loopje in het weekend. Deze route combineert bospaden met open uitzichten en brengt je naar de gezellige Höttinger Alm voor een welverdiende pauze.</p>
+
+                <p>Vergeet niet om altijd de weersvoorspellingen te checken, voldoende water mee te nemen en je aan te passen aan de omstandigheden. Veel plezier met trailrunning in Innsbruck!</p>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Over de auteur</h3>
+                <div class="flex items-center">
+                    <img src="https://via.placeholder.com/100x100?text=JD" alt="Profielfoto Jane Doe" class="w-20 h-20 rounded-full mr-4 object-cover">
+                    <div>
+                        <p class="font-semibold text-lg text-gray-900">Jane Doe</p>
+                        <p class="text-gray-700 text-sm">Jane is een fervent trailrunner en bergliefhebber die al meer dan 10 jaar in Innsbruck woont. Ze deelt graag haar kennis en tips over sporten in de Alpen.</p>
+                        <div class="flex space-x-3 mt-2">
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-instagram"></i></a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Gerelateerde berichten</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <a href="blog-post-2.html">
+                            <img src="https://via.placeholder.com/400x250/D1D5DB/9CA3AF?text=Gerelateerd+1" alt="Gerelateerde post afbeelding" class="w-full h-40 object-cover">
+                        </a>
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                                <a href="blog-post-2.html" class="hover:text-blue-600">Fietsen door het Inntal: Een gids voor beginners</a>
+                            </h4>
+                            <p class="text-gray-600 text-sm">5 juni 2025 • Door John Smith</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <a href="blog-post-3.html">
+                            <img src="https://via.placeholder.com/400x250/D1D5DB/9CA3AF?text=Gerelateerd+2" alt="Gerelateerde post afbeelding" class="w-full h-40 object-cover">
+                        </a>
+                        <div class="p-4">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                                <a href="blog-post-3.html" class="hover:text-blue-600">De top 3 lokale koffietentjes voor sporters</a>
+                            </h4>
+                            <p class="text-gray-600 text-sm">1 juni 2025 • Door Maria Schmidt</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            &copy; 2025 Innsbruck Communities. Alle rechten voorbehouden.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Mobiele hoofdmenu toggle ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // --- Desktop Dropdown voor Communities ---
+            const communitiesDropdownButton = document.getElementById('communities-dropdown-button');
+            const communitiesDropdownMenu = document.getElementById('communities-dropdown-menu');
+
+            if (communitiesDropdownButton && communitiesDropdownMenu) {
+                communitiesDropdownButton.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Voorkom dat de klik onmiddellijk het menu sluit
+                    const isExpanded = communitiesDropdownButton.getAttribute('aria-expanded') === 'true';
+                    communitiesDropdownButton.setAttribute('aria-expanded', !isExpanded);
+                    communitiesDropdownMenu.classList.toggle('hidden', isExpanded);
+                });
+
+                // Sluit de dropdown bij klikken buiten de dropdown of knop
+                document.addEventListener('click', (event) => {
+                    if (!communitiesDropdownButton.contains(event.target) && !communitiesDropdownMenu.contains(event.target)) {
+                        communitiesDropdownMenu.classList.add('hidden');
+                        communitiesDropdownButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // --- Mobiele Dropdown voor Communities ---
+            const mobileCommunitiesDropdownButton = document.getElementById('mobile-communities-dropdown-button');
+            const mobileCommunitiesDropdownMenu = document.getElementById('mobile-communities-dropdown-menu');
+
+            if (mobileCommunitiesDropdownButton && mobileCommunitiesDropdownMenu) {
+                mobileCommunitiesDropdownButton.addEventListener('click', () => {
+                    const isExpanded = mobileCommunitiesDropdownButton.getAttribute('aria-expanded') === 'true';
+                    mobileCommunitiesDropdownButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileCommunitiesDropdownMenu.classList.toggle('hidden', isExpanded);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
