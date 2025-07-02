@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   const events = await loadEvents();
 
   function chooseInitialView() {
-    return window.innerWidth < 600 ? 'timeGridDay' : 'timeGridWeek';
+    return window.innerWidth < 600 ? 'dayGridMonth' : 'dayGridMonth';
   }
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
