@@ -30,24 +30,20 @@ document.addEventListener('DOMContentLoaded', async function () {
     return;
   }
 
-  const organizer = wrapper.getAttribute('data-organizer');
-  console.log('🔎 Organizer filter:', organizer);
-
   try {
     const allEvents = await loadEvents();
     const today = new Date().toISOString().split('T')[0];
 
     const filtered = allEvents
       .filter(e => {
-        const isFuture = (e.start || '').split('T')[0] >= today;
-        const matchesOrganizer = e.extendedProps?.organizer === organizer;
-        return isFuture && matchesOrganizer;
+        // De filter checkt nu alleen of de datum in de toekomst ligt
+        return (e.start || '').split('T')[0] >= today;
       })
       .sort((a, b) => a.start.localeCompare(b.start))
       .slice(0, 3);
 
     if (filtered.length === 0) {
-      container.innerHTML = `<p class="text-gray-500">Geen aankomende events voor ${organizer}.</p>`;
+      container.innerHTML = `<p class="text-gray-500">No events in the future by ${organizer}.</p>`;
       return;
     }
 

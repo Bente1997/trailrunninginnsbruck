@@ -119,6 +119,8 @@ html {
   width: 90%;
 }
 
+/* Gallery class: make it free untill it comes into view. */
+.gallery { content-visibility: auto; contain-intrinsic-size: 1200px; }
 
 /* Houd de avatar-wrapper ALTÍJD vierkant (Tailwind 2.x compatibel) */
 /* Foto is vierkant op mobiel, full-height kolom op desktop */

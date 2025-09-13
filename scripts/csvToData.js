@@ -77,20 +77,20 @@ function generateRecurringEvents(recurringData, cancelledData, rangeStart, range
 
 
 function generateSingleEvents(singleData) {
-  return singleData.map(event => ({
-    title: event['Title'],
-    start: `${event['Date']}T${padTime(event['Time'])}`,
-    end: event['EndDate'] ? `${event['EndDate']}T${padTime(event['EndTime'])}` : null,
-    url: event['Link'],
-    extendedProps: {
-      type: event['Type'],
-      organizer: event['Organizer'],
-      level: event['Level'],
-      price: event['Price'],
-      description: event['Description'],
-      startingPlace: event['StartingPlace']
-    }
-  }));
+ return singleData.map(event => ({
+  title: event['Title'],
+  start: `${event['Date']}T${padTime(event['Time'])}`,
+  end: event['EndDate'] ? `${event['EndDate']}T${padTime(event['EndTime'])}` : null,
+  url: event['Link'],
+  extendedProps: {
+   type: event['Type'],
+   organizer: event['Organizer'], 
+   level: event['Level'],
+   price: event['Price'],
+   description: event['Description'],
+   startingPlace: event['StartingPlace']
+  }
+ }));
 }
 
 window.loadEvents = async function () {
