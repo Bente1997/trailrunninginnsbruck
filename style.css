@@ -118,3 +118,35 @@ html {
   max-width: 400px;
   width: 90%;
 }
+
+
+/* Houd de avatar-wrapper ALTÍJD vierkant (Tailwind 2.x compatibel) */
+/* Foto is vierkant op mobiel, full-height kolom op desktop */
+/* Foto-kolom: vaste breedte, volle kaart-hoogte op ALLE schermen */
+.team-pic{
+  position: relative;
+  flex: 0 0 9rem;   /* vaste kolombreedte op mobile */
+  width: 9rem;
+  height: auto;     /* hoogte volgt de kaart */
+  align-self: stretch;  /* forceer meerekken met kaarthoogte */
+  overflow: hidden;
+}
+
+@media (min-width:768px){
+  .team-pic{
+    flex-basis: 12rem;  /* bredere kolom op desktop */
+    width: 12rem;
+  }
+}
+
+/* Afbeelding moet de hele kolom vullen */
+.team-pic > img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
