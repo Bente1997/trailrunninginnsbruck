@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>$title$</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind + Flowbite via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.js"></script>
+
+    <!-- Custom manual typographic styling -->
+    <style>
+      article h1 {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: #1f2937; /* gray-900 */
+      }
+
+      article h2 {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #1f2937;
+      }
+
+      article h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      article p {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        margin-bottom: 1.25rem;
+      }
+
+      article ul {
+        list-style: disc;
+        margin-left: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      article blockquote {
+        border-left: 4px solid #3b82f6;
+        padding-left: 1rem;
+        color: #374151;
+        font-style: italic;
+        margin: 1.5rem 0;
+      }
+
+      article a {
+        color: #3b82f6;
+        text-decoration: underline;
+      }
+
+      body.dark article h1,
+      body.dark article h2,
+      body.dark article h3,
+      body.dark article p,
+      body.dark article blockquote {
+        color: #f3f4f6; /* gray-100 */
+      }
+
+      body.dark article a {
+        color: #60a5fa;
+      }
+    </style>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white antialiased">
+
+    <main class="pt-8 pb-16 lg:pt-16 lg:pb-24">
+      <div class="flex justify-between px-4 mx-auto max-w-screen-md">
+        <article class="w-full">
+          $body$
+        </article>
+      </div>
+    </main>
+
+  </body>
+</html>

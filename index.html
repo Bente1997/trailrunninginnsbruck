@@ -11,10 +11,10 @@
 <!-- Fallback favicon -->
      <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Light mode favicon -->
-<link rel="icon" href="favicon-light.ico" media="(prefers-color-scheme: light)" type="image/png">
+<link rel="icon" href="favicon-dark.ico" media="(prefers-color-scheme: light)" type="image/png">
 
 <!-- Dark mode favicon -->
-<link rel="icon" href="favicon-dark.ico" media="(prefers-color-scheme: dark)" type="image/png">
+<link rel="icon" href="favicon-light.ico" media="(prefers-color-scheme: dark)" type="image/png">
 
 <!-- Preload the first pic -->
 <link rel="preload" as="image" href="assets/img/IMG_4711.jpg">
@@ -81,44 +81,22 @@
     </div>
   </div>
 
-  <!-- Dropdown menu -->
-<div id="mega-menu-full-dropdown" class="hidden mt-1 border-gray-200 shadow-xs bg-gray-50 md:bg-white border-y dark:bg-gray-800 dark:border-gray-600">
-  <div class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6 gap-4">
-    <ul class="space-y-2">
-      <li>
-        <a href="pages/communities/DNA-Trails.html" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-          <div class="font-semibold">DNA Trails</div>
-          <span class="text-sm text-gray-500 dark:text-gray-400">Trailrunning community</span>
-        </a>
-      </li>
-      <li>
-        <a href="pages/communities/community-placeholder.html" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-          <div class="font-semibold">Another community</div>
-          <span class="text-sm text-gray-500 dark:text-gray-400">Beschrijving hier</span>
-        </a>
-      </li>
-    </ul>
-    <ul class="space-y-2">
-      <li>
-        <a href="pages/communities/community-placeholder.html" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-          <div class="font-semibold">Yet another</div>
-          <span class="text-sm text-gray-500 dark:text-gray-400">Nog een beschrijving</span>
-        </a>
-      </li>
-      <li>
-        <a href="pages/communities/community-placeholder.html" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-          <div class="font-semibold">Nog een</div>
-          <span class="text-sm text-gray-500 dark:text-gray-400">Extra community</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
 
 </nav>
 
 
   </header>
+
+      <a href="#"
+   id="stickyWhatsappTrigger"
+   data-whatsapp-trigger="true"
+   class="fixed bottom-6 right-6 bg-blue-700 hover:bg-blue-800 text-white px-4 py-3 rounded-full shadow-lg text-sm font-semibold z-50"
+   title="Click to enter the WhatsApp Announcement Channel">
+  Join our WhatsApp Channel!
+</a>
+
+
+
 <!-- Hero Section -->
 
     <section class="relative py-20 px-6 overflow-hidden bg-cover bg-center" style="background-image: url('assets/img/IMG_4711.jpg');">
@@ -408,7 +386,7 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
 
                 <div class="mb-10">
                     <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 100-2 1 1 0 000 2zm-3 8a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
                         How fit do I need to be?
                     </h3>
                     <p class="text-gray-500 dark:text-gray-400">There's no minimum fitness level! The goal is to enjoy the trails, the views around Innsbruck, and the company. We always ensure <span class="font-bold">no one gets left behind</span> and adjust to the group's needs. We also have two groups with different paces.</p>
@@ -416,14 +394,16 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
 
                 <div class="mb-10">
                     <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 100-2 1 1 0 000 2zm-3 8a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                        How long are the community runs?
+                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        How fit do I need to be?
                     </h3>
                     <p class="text-gray-500 dark:text-gray-400">We typically run in <span class="font-bold">two groups</span>: the <span class="font-bold">discovery trail</span>, usually a loop of around <span class="font-bold">8km with 250m D+</span>, and the <span class="font-bold">advanced trail</span>, typically around <span class="font-bold">12km with 400m D+</span>. Run durations vary by pace, but plan for 1.5 to 2.5 hours.</p>
                 </div>
 <div class="mb-10">
     <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
         <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        How fit do I need to be?
+                        How fit do I need to be?
         Besides the Thursday community run, what else does the community offer?
     </h3>
     <p class="text-gray-500 dark:text-gray-400">Our community offers much more than just our weekly Thursday runs! We regularly organize various events and activities, including:</p>
@@ -443,31 +423,32 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
             <div>
                 <div class="mb-10">
                     <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 100-2 1 1 0 000 2zm-3 8a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                        Do I need to sign up or register for the runs?
+                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        How fit do I need to be?
                     </h3>
                     <p class="text-gray-500 dark:text-gray-400">No, you can <span class="font-bold">just show up - no registration needed!</span> If it's your first time running with us, we'd appreciate it if you come a little bit earlier to say hi so we can welcome you properly.</p>
                 </div>
 
                 <div class="mb-10">
                     <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 100-2 1 1 0 000 2zm-3 8a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                        What gear do I need for a community run?
+                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        How fit do I need to be?
                     </h3>
                     <p class="text-gray-500 dark:text-gray-400">Your <span class="font-bold">trail running shoes</span> are the most important piece of gear. We even provide a limited set of shoes for those who don't have trail shoes yet and want to try them out! We also recommend a trail running backpack with some water, a light jacket, and a snack, but that's up to you.</p>
                 </div>
 
                 <div class="mb-10">
                     <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 100-2 1 1 0 000 2zm-3 8a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                        How do I find out about upcoming runs and events?
+                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        How fit do I need to be?
                     </h3>
                     <p class="text-gray-500 dark:text-gray-400">All our upcoming community runs, workshops, and special events are listed on our <a href="events.html" class="text-blue-600 hover:underline dark:text-blue-500">Events page</a>. We highly recommend joining our <span class="font-bold">WhatsApp Announcement Channel</span>, as we always post the fastest and most accurate updates there.</p>
                 </div>
 
                 <div class="mb-10">
                     <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 100-2 1 1 0 000 2zm-3 8a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        <svg class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                        How fit do I need to be?
                         I'd like to contribute to the community. How can I help?
                     </h3>
                     <p class="text-gray-500 dark:text-gray-400">That's great! We're always happy to have people help lead the groups on Thursdays, as well as support other initiatives like organizing a (weekend) event, workshop, or lecture. In the past, people have provided strength training sessions, nutrition workshops, and even organized casual races. Please reach out to us by filling out the <a href="contact.html" class="text-blue-600 hover:underline dark:text-blue-500">contact form</a> or by sending us a message on WhatsApp.</p>
@@ -482,7 +463,39 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
 </section>
 
 
-</body>
+<div id="whatsappSecurityModal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4">
+    <div class="absolute inset-0 bg-black bg-opacity-50" data-whatsapp-overlay-backdrop></div>
+    <div class="relative w-full max-w-sm p-6 border border-gray-300 rounded-lg shadow-lg bg-white" role="dialog" aria-modal="true" aria-labelledby="whatsappModalTitle">
+        <div class="flex justify-between items-center mb-3">
+            <p id="whatsappModalTitle" class="text-lg font-semibold">To confirm you're a runner and not a robot, please answer the following question:</p>
+            <button id="closeWhatsappModal" class="text-gray-500 hover:text-gray-700 text-xl font-bold" aria-label="Close WhatsApp verification modal">&times;</button>
+        </div>
+
+        <p class="mb-4 text-md">How much is 25 minus 15? Enter your answer in numbers.</p>
+        
+        <div class="flex items-center space-x-2">
+            <input 
+                type="text" 
+                id="whatsappAnswerInput" 
+                placeholder="Your answer" 
+                class="p-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500 flex-grow"
+            >
+            <button 
+                id="revealWhatsappLinkBtn" 
+                class="px-4 py-2 bg-pink-500 text-white font-semibold rounded-md hover:bg-pink-600 transition-colors duration-200"
+            >
+                Show Link
+            </button>
+        </div>
+
+        <div id="whatsappActualLinkDisplay" class="mt-4 hidden">
+            <a href="#" id="whatsappFinalLink" target="_blank" rel="noopener noreferrer" title="Go to WhatsApp group">
+                <i class="fab fa-whatsapp text-4xl text-pink-500 hover:text-pink-600 transition-colors duration-200"></i>
+                <span class="ml-2 text-pink-500 hover:text-pink-600 text-lg font-medium">Click here to enter the group.</span>
+            </a>
+        </div>
+    </div>
+</div>
 
 
 
@@ -548,48 +561,16 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
 </a>
 
 
-<a href="#" id="initialWhatsappTrigger" class="inline-block ml-4" title="Click to enter the WhatsApp Announcement Channel">
+<a href="#" id="initialWhatsappTrigger" data-whatsapp-trigger="true" class="inline-block ml-4" title="Click to enter the WhatsApp Announcement Channel">
     <i class="fab fa-whatsapp text-2xl text-pink-500 hover:text-pink-600 transition-colors duration-200"></i>
 </a>
-
-<div     id="whatsappSecurityModal" class="hidden mt-4 p-4 border border-gray-300 rounded-lg shadow-md bg-white mx-auto max-w-sm" >
-    <div class="flex justify-between items-center mb-3">
-        <p class="text-lg font-semibold">To confirm you're a runner and not a robot, please answer the following question:</p>
-        <button id="closeWhatsappModal" class="text-gray-500 hover:text-gray-700 text-xl font-bold">&times;</button>
-    </div>
-
-
-    
-    <p class="mb-4 text-md">How much is 25 minus 15? Enter your answer in numbers.</p>
-    
-    <div class="flex items-center space-x-2">
-        <input 
-            type="text" 
-            id="whatsappAnswerInput" 
-            placeholder="Your answer" 
-            class="p-2 border border-gray-300 rounded-md focus:ring-pink-500 focus:border-pink-500 flex-grow"
-        >
-        <button 
-            id="revealWhatsappLinkBtn" 
-            class="px-4 py-2 bg-pink-500 text-white font-semibold rounded-md hover:bg-pink-600 transition-colors duration-200"
-        >
-            Show Link
-        </button>
-    </div>
-
-    <div id="whatsappActualLinkDisplay" class="mt-4 hidden">
-        <a href="#" id="whatsappFinalLink" target="_blank" rel="noopener noreferrer" title="Ga naar WhatsApp groep">
-            <i class="fab fa-whatsapp text-4xl text-pink-500 hover:text-pink-600 transition-colors duration-200"></i>
-            <span class="ml-2 text-pink-500 hover:text-pink-600 text-lg font-medium">Click here to enter the group.</span>
-        </a>
-    </div>
-</div>
 
 
           </div>
       </div>
-    </div>
+</div>
 </footer>
 
-</html>
+</body>
 
+</html>
