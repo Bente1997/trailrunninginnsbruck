@@ -1,35 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Innsbruck Trail Running Events Calendar 2025 | DNA Trails</title>
-<meta name="description" content="View the full calendar of upcoming runs and special events with the DNA Trails community. Find dates, times, and details for our next weekly run or trail adventure.">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trail Running Event Calendar • DNA Trails Innsbruck</title>
+  <meta name="description" content="View the full calendar of upcoming runs and special events with the DNA Trails community. Find dates, times, and details for our next weekly run or trail adventure.">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
 <!-- Light mode favicon -->
-<link rel="icon" href="favicon-light.ico" media="(prefers-color-scheme: light)" type="image/png">
+<link rel="icon" href="/favicon-light.ico" media="(prefers-color-scheme: light)" type="image/png">
 
 <!-- Dark mode favicon -->
-<link rel="icon" href="favicon-dark.ico" media="(prefers-color-scheme: dark)" type="image/png">
-  <!-- Fonts & Tailwind -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles/style.css">
+<link rel="icon" href="/favicon-dark.ico" media="(prefers-color-scheme: dark)" type="image/png">
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/styles/style.css">
 <link rel="stylesheet" href="/styles/navbar.css">
-  <!-- Flowbite core styles (alleen nodig als je die nog niet hebt) -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
-<script data-goatcounter="https://dnatrails.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="/styles/calendar.css">
+<script defer src="/scripts/calendar-new.js"></script>
 
 
-<!-- Flowbite script (maakt toggle-buttons werkend) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    
 
 </head>
+<body>
 
-<body class="bg-gray-100">
-
-    <header class="bg-white shadow-md ">
+    <header>
 
  <nav class="navbar">
             <a href="/index.html" class="navbar-brand">
@@ -185,58 +184,52 @@
 </div>
 
   </header>
+    <div class="container">
+        <div class="toolbar">
+            <div class="title">
+                <button class="btn" id="prevBtn">←</button>
+                <button class="btn" id="todayBtn">Today</button>
+                <button class="btn" id="nextBtn">→</button>
+                <h1 id="monthTitle">October 2025</h1>
+            </div>
+            <div class="controls">
+                <select id="filterSelect" class="filterSelect">
+                    <option value="all" selected>All</option>
+                </select>
+            </div>
+        </div>
 
-  <!-- ✅ Main Content -->
-  <main class="max-w-7xl mx-auto px-4 py-12">
-    <h1 class="text-3xl font-bold text-blue-900 mb-6">Trail Running Event Calendar</h1>
-    <p class="text-gray-700 mb-6">
-      Find all upcoming events organized by DNA Trails around Innsbruck.
-    </p>
-    <div id="calendarContainer" class="bg-white shadow rounded-lg p-4">
-      <div id="calendar"></div>
+        <div class="calendar-wrapper">
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+
+        <div class="mobile-list-view" id="mobileListView"></div>
     </div>
-  </main>
 
-  <!-- ✅ Event Modal -->
-<div id="eventModal" class="modal">
-  <div class="modal-content relative">
-      <button class="close absolute top-4 right-4 text-xl font-bold">&times;</button>
-      <h2 id="modalTitle" class="text-xl font-bold mb-2"></h2>
-      <p id="modalDescription" class="mb-2"></p>
-      <p id="modalDate" class="text-sm text-gray-600 mb-1"></p>
-      <p id="modalStartingPlace" class="text-sm text-gray-600 mb-1"></p>
-      <p id="modalLevel" class="text-sm text-gray-600 mb-1"></p>
-      <p id="modalPrice" class="text-sm text-gray-600 mb-2"></p>
-      <a id="modalLink" href="#" target="_blank" class="text-blue-600 underline">More info</a>
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-tags" class="modal-tags"></div>
+            <p id="modal-time"></p>
+            <p id="modal-location"></p>
+            <p id="modal-desc"></p>
+            <div>
+                <a id="modal-book-link" href="#" target="_blank" class="modal-cta">Book</a>
+                <a id="modal-cal-link" href="#" target="_blank" class="add-to-cal-btn">📅 Add to Calendar</a>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- ✅ Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-  <script src="/scripts/csvToData.js"></script>
-<script src="/scripts/cards.js"></script>
-  <script src="/scripts/calendar.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const toggle = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (toggle && mobileMenu) {
-        toggle.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
+  
+      <script src="/scripts/navbar.js"></script>
+      <!-- Analytics -->
+<script data-goatcounter="https://dnatrails.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
-      const modal = document.getElementById('eventModal');
-      const close = document.querySelector('.modal .close');
-      if (modal && close) {
-        close.addEventListener('click', () => modal.classList.add('hidden'));
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) modal.classList.add('hidden');
-        });
-      }
-    });
-  </script>
-  <script src="/scripts/navbar.js"></script>
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p class="loading-text">Loading calendar…</p>
+</div>
 </body>
 </html>

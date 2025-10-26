@@ -1,345 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Monthly Calendar View</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    
-    <style>
-        :root{
-            --brand:#FFCCC9; --ink:#0f172a; --muted:#64748b; --bg:#ffffff; --card:#ffffff; --ring:#e2e8f0;
-            --radius:14px; --pageMax:1200px;
-        }
-        *{box-sizing:border-box}
-        body{font-family:Inter,system-ui,Arial,sans-serif; color:var(--ink); margin:0; background:var(--bg);} 
-        .container{max-width:var(--pageMax); margin:0 auto; padding:0 1rem;}
 
-        .toolbar{display:flex; gap:.75rem; align-items:center; justify-content:space-between; padding:1rem 1.25rem; position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--ring); z-index:5}
-        .title{display:flex; align-items:center; gap:.75rem; flex-wrap:wrap}
-        .title h1{font-size:1.3rem; margin:0; font-weight:700}
-        .btn{padding:.5rem .8rem; border:1px solid var(--ring); border-radius:10px; background:white; cursor:pointer; font-size:1rem}
-        .btn:hover{filter:brightness(0.98)}
-        .controls{display:flex; gap:.5rem; align-items:center;}
-
-        select.filterSelect {
-            padding: .4rem .7rem;
-            border: 1px solid var(--ring);
-            border-radius: 999px;
-            background: white;
-            color: var(--muted);
-            font-size: 1rem;
-            appearance: none;
-            cursor: pointer;
-            min-width: 110px;
-        }
-
-        .calendar-wrapper {
-            padding: 1.5rem 1rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 1px;
-            background: var(--ring);
-            border: 1px solid var(--ring);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-
-        .day-header-cell {
-            background: var(--bg);
-            padding: 0.75rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .calendar-day {
-            background: var(--bg);
-            min-height: 120px;
-            padding: 0.5rem;
-            position: relative;
-        }
-
-        .calendar-day.other-month {
-            background: #fafafa;
-            opacity: 0.6;
-        }
-
-        .calendar-day.today {
-            background: rgba(255, 204, 201, 0.1);
-        }
-
-        .day-number {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-        }
-
-        .calendar-day.today .day-number {
-            background: var(--brand);
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .day-events {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .event-pill {
-            background: var(--card);
-            border: 1px solid var(--ring);
-            border-radius: 8px;
-            padding: 0.4rem 0.5rem;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-        }
-
-        .event-pill:hover {
-            border-color: var(--brand);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .event-pill.filtered {
-            display: none;
-        }
-
-        .event-pill-title {
-            font-weight: 600;
-            color: var(--ink);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .event-pill-time {
-            color: var(--muted);
-            font-size: 0.75rem;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10; 
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease-in;
-        }
-        .modal.active {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-content {
-            background-color: var(--bg);
-            padding: 2rem;
-            border-radius: var(--radius);
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            transform: scale(0.9);
-            opacity: 0;
-            transition: transform 0.3s ease-in, opacity 0.3s ease-in;
-        }
-        .modal.active .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--muted);
-        }
-
-        .modal-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin: 0.5rem 0 1rem 0;
-        }
-
-        .tag {
-            padding: 0.2rem 0.6rem;
-            border: 1px solid var(--ring);
-            border-radius: 999px;
-            color: var(--muted);
-            font-size: 0.85rem;
-        }
-
-        .modal-cta {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: .5rem 1rem;
-            background: var(--brand);
-            color: white;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .add-to-cal-btn {
-            display: inline-block;
-            margin-top: 0.5rem;
-            margin-left: 0.5rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--ring);
-            border-radius: 10px;
-            background: var(--bg);
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        /* Mobile List View */
-        .mobile-list-view {
-            display: none;
-        }
-
-        .event-list-item {
-            background: var(--card);
-            border: 1px solid var(--ring);
-            border-radius: var(--radius);
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .event-list-item:hover {
-            border-color: var(--brand);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .event-list-item.filtered {
-            display: none;
-        }
-
-        .event-list-date {
-            font-size: 0.85rem;
-            color: var(--muted);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .event-list-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.4rem;
-        }
-
-        .event-list-time {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .event-list-tags {
-            display: flex;
-            gap: 0.4rem;
-            flex-wrap: wrap;
-        }
-
-        .event-list-location {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-top: 0.4rem;
-        }
-
-        @media (max-width: 768px) {
-            .title h1 {
-                font-size: 1.1rem;
-            }
-            
-            .calendar-wrapper {
-                display: none;
-            }
-            
-            .mobile-list-view {
-                display: block;
-                padding: 1rem;
-                max-width: 600px;
-                margin: 0 auto;
-            }
-            
-            .mobile-list-empty {
-                text-align: center;
-                color: var(--muted);
-                padding: 2rem;
-                font-style: italic;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="toolbar">
-            <div class="title">
-                <button class="btn" id="prevBtn">←</button>
-                <button class="btn" id="todayBtn">Today</button>
-                <button class="btn" id="nextBtn">→</button>
-                <h1 id="monthTitle">October 2025</h1>
-            </div>
-            <div class="controls">
-                <select id="filterSelect" class="filterSelect">
-                    <option value="all" selected>All</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="calendar-wrapper">
-            <div class="calendar-grid" id="calendarGrid"></div>
-        </div>
-    </div>
-
-    <div id="eventModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2 id="modal-title"></h2>
-            <div id="modal-tags" class="modal-tags"></div>
-            <p id="modal-time"></p>
-            <p id="modal-location"></p>
-            <p id="modal-desc"></p>
-            <div>
-                <a id="modal-book-link" href="#" target="_blank" class="modal-cta">Book</a>
-                <a id="modal-cal-link" href="#" target="_blank" class="add-to-cal-btn">📅 Add to Calendar</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const DATA_SOURCES = [
-            { organizer: 'DNA Trails', singles: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQcZJm7p8vV6KnyB2ZggoEQ9yi0maYoaTJk9QVvDByfrcJmtcp8v0emaURB6gWsX05wstW11FqdqIjv/pub?gid=0&single=true&output=tsv', recurring: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQcZJm7p8vV6KnyB2ZggoEQ9yi0maYoaTJk9QVvDByfrcJmtcp8v0emaURB6gWsX05wstW11FqdqIjv/pub?gid=1719385230&single=true&output=tsv', cancelled: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQcZJm7p8vV6KnyB2ZggoEQ9yi0maYoaTJk9QVvDByfrcJmtcp8v0emaURB6gWsX05wstW11FqdqIjv/pub?gid=469608839&single=true&output=tsv' },
+  
+  const DATA_SOURCES = [
+            { organizer: 'DNA Trails', singles: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=1538217407&single=true&output=tsv', recurring: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=1880778759&single=true&output=tsv', cancelled: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=2020183836&single=true&output=tsv' },
         ];
 
         function addDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
@@ -580,6 +242,7 @@
         const closeBtn = document.querySelector('.close-btn');
         const monthTitle = document.getElementById('monthTitle');
         const calendarGrid = document.getElementById('calendarGrid');
+        const mobileListView = document.getElementById('mobileListView');
         const filterSelect = document.getElementById('filterSelect');
 
         function createGoogleCalendarLink(eventData) {
@@ -629,6 +292,7 @@
             
             monthTitle.textContent = currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
             
+            // Desktop calendar grid
             const firstDay = startOfMonth(currentMonth);
             const startDate = startOfWeek(firstDay);
             
@@ -691,6 +355,84 @@
                 calendarGrid.appendChild(dayCell);
                 date = addDays(date, 1);
             }
+
+            // Mobile list view
+            renderMobileList(currentMonth);
+        }
+
+        function renderMobileList(currentMonth) {
+            mobileListView.innerHTML = '';
+            
+            const monthStart = startOfMonth(currentMonth);
+            const monthEnd = endOfMonth(currentMonth);
+            
+            const monthEvents = EVENTS.filter(e => {
+                const eventDate = new Date(e.start);
+                return eventDate >= monthStart && eventDate <= monthEnd;
+            }).sort((a, b) => new Date(a.start) - new Date(b.start));
+            
+            if (monthEvents.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'mobile-list-empty';
+                empty.textContent = 'No events this month';
+                mobileListView.appendChild(empty);
+                return;
+            }
+            
+            monthEvents.forEach(event => {
+                const item = document.createElement('div');
+                item.className = 'event-list-item';
+                if (activeFilter !== 'all' && event.type !== activeFilter) {
+                    item.classList.add('filtered');
+                }
+                
+                const eventDate = new Date(event.start);
+                const dateStr = eventDate.toLocaleDateString('en-US', { 
+                    weekday: 'short', 
+                    month: 'short', 
+                    day: 'numeric' 
+                });
+                
+                const dateDiv = document.createElement('div');
+                dateDiv.className = 'event-list-date';
+                dateDiv.textContent = dateStr;
+                item.appendChild(dateDiv);
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'event-list-title';
+                titleDiv.textContent = event.title;
+                item.appendChild(titleDiv);
+                
+                const timeDiv = document.createElement('div');
+                timeDiv.className = 'event-list-time';
+                timeDiv.textContent = `${fmtTime(new Date(event.start))} – ${fmtTime(new Date(event.end))}`;
+                item.appendChild(timeDiv);
+                
+                const tagsDiv = document.createElement('div');
+                tagsDiv.className = 'event-list-tags';
+                
+                const orgTag = document.createElement('span');
+                orgTag.className = 'tag';
+                orgTag.textContent = event.organizer;
+                tagsDiv.appendChild(orgTag);
+                
+                const typeTag = document.createElement('span');
+                typeTag.className = 'tag';
+                typeTag.textContent = event.type;
+                tagsDiv.appendChild(typeTag);
+                
+                item.appendChild(tagsDiv);
+                
+                if (event.startplek) {
+                    const locationDiv = document.createElement('div');
+                    locationDiv.className = 'event-list-location';
+                    locationDiv.textContent = `📍 ${event.startplek}`;
+                    item.appendChild(locationDiv);
+                }
+                
+                item.addEventListener('click', () => showModal(event));
+                mobileListView.appendChild(item);
+            });
         }
 
         function rebuildFilters() {
@@ -724,12 +466,30 @@
             renderMonth();
         });
 
-        (async function init(){
-            const loaded = await loadSources();
-            EVENTS = loaded.sort((a,b) => new Date(a.start) - new Date(b.start));
-            rebuildFilters();
+        // Handle window resize to re-render appropriately
+        window.addEventListener('resize', () => {
             renderMonth();
-        })();
-    </script>
-</body>
-</html>
+        });
+
+
+
+
+        // --- INIT (must come last) ---
+const loadingOverlay = document.getElementById('loadingOverlay');
+if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+
+(async function init() {
+  try {
+    const loaded = await loadSources();
+    EVENTS = loaded.sort((a, b) => new Date(a.start) - new Date(b.start));
+    rebuildFilters();
+    renderMonth();
+  } catch (err) {
+    console.error('❌ Error loading events:', err);
+  } finally {
+    if (loadingOverlay) {
+      loadingOverlay.classList.add('hidden');
+      setTimeout(() => loadingOverlay.remove(), 400);
+    }
+  }
+})();
