@@ -3,28 +3,23 @@
   xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/</loc>
+    <loc>https://www.trailrunninginnsbruck.com/index.html</loc>
   </url>
 
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/events.html</loc>
+    <loc>https://www.trailrunninginnsbruck.com/calendar/index.html</loc>
   </url>
 
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/about.html</loc>
+    <loc>https://www.trailrunninginnsbruck.com/about/index.html</loc>
   </url>
 
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/contact.html</loc>
+    <loc>https://www.trailrunninginnsbruck.com/contact/index.html</loc>
   </url>
 
     <url>
-    <loc>https://www.trailrunninginnsbruck.com/routes.html</loc>
-  </url>
-
-
-  <url>
-    <loc>https://www.trailrunninginnsbruck.com/blog.html</loc>
+    <loc>https://www.trailrunninginnsbruck.com/routes/index.html</loc>
   </url>
 
 </urlset>

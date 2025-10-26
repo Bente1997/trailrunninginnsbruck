@@ -1,50 +1,48 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // --- Mobiele hoofdmenu toggle ---
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
+ const communitiesItem = document.querySelector('.communities-item');
+  const communitiesTrigger = document.querySelector('.communities-trigger');
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileCommunityToggle = document.querySelector('.mobile-communities-toggle');
+  const mobileMegaMenu = document.querySelector('.mobile-mega-menu');
 
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-
-  // --- Desktop Dropdown voor Communities ---
-  const communitiesDropdownButton = document.getElementById('communities-dropdown-button');
-  const communitiesDropdownMenu = document.getElementById('communities-dropdown-menu');
-
-  // De desktop-versie heeft een hover-effect via Tailwind's `group-hover:block`
-  // dus een click-functionaliteit is hier optioneel en kan conflicteren met hover.
-  // Ik laat de click functionaliteit hieronder staan, mocht je deze toch willen,
-  // maar als je puur op hover wilt, kun je dit deel verwijderen.
-  if (communitiesDropdownButton && communitiesDropdownMenu) {
-    communitiesDropdownButton.addEventListener('click', (event) => {
-      // Voorkom dat de klik onmiddellijk het menu sluit als gevolg van de document click listener
-      event.stopPropagation();
-      const isExpanded = communitiesDropdownButton.getAttribute('aria-expanded') === 'true';
-      communitiesDropdownButton.setAttribute('aria-expanded', !isExpanded);
-      communitiesDropdownMenu.classList.toggle('hidden', isExpanded);
+  // ---- Communities dropdown (only if it exists) ----
+  if (communitiesItem && communitiesTrigger) {
+    communitiesTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      communitiesItem.classList.toggle('active');
+      console.log('Communities clicked, active:', communitiesItem.classList.contains('active'));
     });
 
-    // Sluit de dropdown bij klikken buiten de dropdown of knop
-    document.addEventListener('click', (event) => {
-      if (!communitiesDropdownButton.contains(event.target) && !communitiesDropdownMenu.contains(event.target)) {
-        communitiesDropdownMenu.classList.add('hidden');
-        communitiesDropdownButton.setAttribute('aria-expanded', 'false');
+    // Close mega menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!communitiesItem.contains(e.target)) {
+        communitiesItem.classList.remove('active');
       }
     });
   }
 
-
-  // --- Mobiele Dropdown voor Communities ---
-  const mobileCommunitiesDropdownButton = document.getElementById('mobile-communities-dropdown-button');
-  const mobileCommunitiesDropdownMenu = document.getElementById('mobile-communities-dropdown-menu');
-
-  if (mobileCommunitiesDropdownButton && mobileCommunitiesDropdownMenu) {
-    mobileCommunitiesDropdownButton.addEventListener('click', () => {
-      const isExpanded = mobileCommunitiesDropdownButton.getAttribute('aria-expanded') === 'true';
-      mobileCommunitiesDropdownButton.setAttribute('aria-expanded', !isExpanded);
-      mobileCommunitiesDropdownMenu.classList.toggle('hidden', isExpanded);
+  // ---- Mobile menu toggle ----
+  if (mobileMenuToggle && mobileMenu) {
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenuToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
     });
   }
-}); // Sluiting van de DOMContentLoaded function()
+
+  // ---- Mobile communities dropdown ----
+  if (mobileCommunityToggle && mobileMegaMenu) {
+    mobileCommunityToggle.addEventListener('click', () => {
+      mobileCommunityToggle.classList.toggle('active');
+      mobileMegaMenu.classList.toggle('active');
+    });
+  }
+
+  // ---- Close mobile menu when clicking links ----
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuToggle?.classList.remove('active');
+      mobileMenu?.classList.remove('active');
+      mobileCommunityToggle?.classList.remove('active');
+      mobileMegaMenu?.classList.remove('active');
+    });
+  });

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Innsbruck Trail Running Events Calendar 2025 | DNA Trails</title>
+<meta name="description" content="View the full calendar of upcoming runs and special events with the DNA Trails community. Find dates, times, and details for our next weekly run or trail adventure.">
+<!-- Light mode favicon -->
+<link rel="icon" href="favicon-light.ico" media="(prefers-color-scheme: light)" type="image/png">
+
+<!-- Dark mode favicon -->
+<link rel="icon" href="favicon-dark.ico" media="(prefers-color-scheme: dark)" type="image/png">
+  <!-- Fonts & Tailwind -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/style.css">
+<link rel="stylesheet" href="/styles/navbar.css">
+  <!-- Flowbite core styles (alleen nodig als je die nog niet hebt) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+
+<script data-goatcounter="https://dnatrails.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+
+<!-- Flowbite script (maakt toggle-buttons werkend) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
+</head>
+
+<body class="bg-gray-100">
+
+    <header class="bg-white shadow-md ">
+
+ <nav class="navbar">
+            <a href="/index.html" class="navbar-brand">
+      <img src="/assets/logos/dna-trails-logo-black.png" alt="DNA Trails Logo" class="h-8 w-auto" loading="lazy">
+    </a>
+        
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="/#communityRun" class="nav-link">Community Run</a>
+            </li>
+            <li class="nav-item">
+                <a href="/calendar/index.html" class="nav-link">Calendar</a>
+            </li>
+             <li class="nav-item">
+                <a href="/about/index.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="/contact/contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="/routes/index.html" class="nav-link">Routes</a>
+            </li>
+            <!-- <li class="nav-item communities-item">
+                <div class="nav-link communities-trigger">
+                    Communities
+                    <span class="dropdown-arrow"></span>
+                </div>
+                <div class="mega-menu">
+<div class="mega-menu-grid">
+    
+    <div class="mega-menu-column">
+        <a href="#" class="community-item">
+            <div class="community-name">Base5</div>
+            <div class="community-desc">[TEST] Description goes here. max 80 characters including spaces. </div> <!-- max 80 characters including spaces.   -->
+        <!-- </a>
+        <a href="communities/dna-trails/index.html" class="community-item">
+            <div class="community-name">DNA Trails</div>
+            <div class="community-desc">Weekly Community Trail Run on Thursday 18:00. All levels welcome!  </div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">Drop Movement</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">earlybirds</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+    </div>
+    
+    <div class="mega-menu-column">
+        <a href="#" class="community-item">
+            <div class="community-name">Edelsten</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">Kasa sportsclub</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">Kiss ride</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+    </div>
+    
+    <div class="mega-menu-column">
+        <a href="#" class="community-item">
+            <div class="community-name">Morningruns</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">OPEN</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">Schwalben</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+    </div>
+</div>
+        
+    </div>
+</div>
+                    </div>
+                </div>
+            </li> --> 
+        </ul>
+
+ <!-- Mobile Menu -->
+<button class="mobile-menu-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="mobile-menu">
+  <a href="/#communityRun" class="mobile-nav-link">Community Run</a>
+  <a href="/calendar/index.html" class="mobile-nav-link">Calendar</a>
+  <a href="/about/index.html" class="mobile-nav-link">About</a>
+  <a href="/contact/contact.html" class="mobile-nav-link">Contact</a>
+  <a href="/routes/index.html" class="mobile-nav-link">Routes</a>
+
+  <!-- 
+  <button class="mobile-communities-toggle">
+    Communities
+    <span class="mobile-dropdown-arrow"></span>
+  </button>
+
+  <div class="mobile-mega-menu">
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Base5</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="communities/dna-trails/index.html" class="mobile-community-item">
+      <div class="mobile-community-name">DNA Trails</div>
+      <div class="mobile-community-desc">
+        Weekly Community Trail Run on Thursday 18:00. All levels welcome!
+      </div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Drop Movement</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">earlybirds</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Edelsten</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Kasa sportsclub</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Kiss ride</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Morningruns</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">OPEN</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Schwalben</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+  </div>
+  -->
+</div>
+
+  </header>
+
+  <!-- ✅ Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-blue-900 mb-6">Trail Running Event Calendar</h1>
+    <p class="text-gray-700 mb-6">
+      Find all upcoming events organized by DNA Trails around Innsbruck.
+    </p>
+    <div id="calendarContainer" class="bg-white shadow rounded-lg p-4">
+      <div id="calendar"></div>
+    </div>
+  </main>
+
+  <!-- ✅ Event Modal -->
+<div id="eventModal" class="modal">
+  <div class="modal-content relative">
+      <button class="close absolute top-4 right-4 text-xl font-bold">&times;</button>
+      <h2 id="modalTitle" class="text-xl font-bold mb-2"></h2>
+      <p id="modalDescription" class="mb-2"></p>
+      <p id="modalDate" class="text-sm text-gray-600 mb-1"></p>
+      <p id="modalStartingPlace" class="text-sm text-gray-600 mb-1"></p>
+      <p id="modalLevel" class="text-sm text-gray-600 mb-1"></p>
+      <p id="modalPrice" class="text-sm text-gray-600 mb-2"></p>
+      <a id="modalLink" href="#" target="_blank" class="text-blue-600 underline">More info</a>
+    </div>
+  </div>
+
+  <!-- ✅ Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="/scripts/csvToData.js"></script>
+<script src="/scripts/cards.js"></script>
+  <script src="/scripts/calendar.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (toggle && mobileMenu) {
+        toggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      const modal = document.getElementById('eventModal');
+      const close = document.querySelector('.modal .close');
+      if (modal && close) {
+        close.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.add('hidden');
+        });
+      }
+    });
+  </script>
+  <script src="/scripts/navbar.js"></script>
+</body>
+</html>

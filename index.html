@@ -17,7 +17,7 @@
 <link rel="icon" href="favicon-light.ico" media="(prefers-color-scheme: dark)" type="image/png">
 
 <!-- Preload the first pic -->
-<link rel="preload" as="image" href="assets/img/IMG_4711.jpg">
+<link rel="preload" as="image" href="/assets/img/IMG_4711.jpg">
 
 
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -25,7 +25,8 @@
   <!-- Flowbite core styles (alleen nodig als je die nog niet hebt) -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/styles/style.css">
+<link rel="stylesheet" href="/styles/navbar.css">
 <!-- Analytics -->
 <script data-goatcounter="https://dnatrails.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
@@ -34,58 +35,168 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 <script defer src="/scripts/csvToData.js"></script>
 <script defer src="/scripts/calendar.js"></script>
-<script defer src="/scripts/navbar.js"></script>
 <script defer src="/scripts/cards.js"></script>
 <script defer src="/scripts/whatsapp-protection.js"></script>
+<script src="/scripts/navbar.js"></script>
 
   </head>
 <body>
  <header>
-
-<nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
-  <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-    <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="assets/logos/dna-trails-logo-black.png" alt="DNA Trails Logo" class="h-8 w-auto" loading="lazy">
+ 
+ <nav class="navbar">
+            <a href="/index.html" class="navbar-brand">
+      <img src="/assets/logos/dna-trails-logo-black.png" alt="DNA Trails Logo" class="h-8 w-auto" loading="lazy">
     </a>
-    <button data-collapse-toggle="mega-menu-full" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mega-menu-full" aria-expanded="false">
-      <span class="sr-only">Open main menu</span>
-      <svg class="w-5 h-5" aria-hidden="true" xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-      </svg>
-    </button>
-    <div id="mega-menu-full" class="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1">
-      <ul class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-       <li><a href="index.html#communityRun" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Community Run</a></li>
-        <li>
-          <a href="events.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent">Calendar</a>
-         </li>
-          <li>
-          <a href="about.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">About</a>
-        </li>
-        <!-- <li>
-          <button id="mega-menu-full-dropdown-button" data-collapse-toggle="mega-menu-full-dropdown" type="button" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded-sm md:w-auto hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent">
-            Other Events
-            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="https://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-            </svg>
-          </button>
-        </li> -->
         
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="/#communityRun" class="nav-link">Community Run</a>
+            </li>
+            <li class="nav-item">
+                <a href="/calendar/index.html" class="nav-link">Calendar</a>
+            </li>
+             <li class="nav-item">
+                <a href="/about/index.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="/contact/contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="/routes/index.html" class="nav-link">Routes</a>
+            </li>
+            <!-- <li class="nav-item communities-item">
+                <div class="nav-link communities-trigger">
+                    Communities
+                    <span class="dropdown-arrow"></span>
+                </div>
+                <div class="mega-menu">
+<div class="mega-menu-grid">
     
-        <li><a href="/contact.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Contact</a></li>
-                   
-        <li><a href="/routes.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Routes</a></li>
-  
-        <li><a href="/blog.html" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Blog</a></li>
-      </ul>
+    <div class="mega-menu-column">
+        <a href="#" class="community-item">
+            <div class="community-name">Base5</div>
+            <div class="community-desc">[TEST] Description goes here. max 80 characters including spaces. </div> <!-- max 80 characters including spaces.   -->
+        <!-- </a>
+        <a href="communities/dna-trails/index.html" class="community-item">
+            <div class="community-name">DNA Trails</div>
+            <div class="community-desc">Weekly Community Trail Run on Thursday 18:00. All levels welcome!  </div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">Drop Movement</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">earlybirds</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
     </div>
+    
+    <div class="mega-menu-column">
+        <a href="#" class="community-item">
+            <div class="community-name">Edelsten</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">Kasa sportsclub</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">Kiss ride</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+    </div>
+    
+    <div class="mega-menu-column">
+        <a href="#" class="community-item">
+            <div class="community-name">Morningruns</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">OPEN</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+        <a href="#" class="community-item">
+            <div class="community-name">Schwalben</div>
+            <div class="community-desc">Description goes here</div>
+        </a>
+    </div>
+</div>
+        
+    </div>
+</div>
+                    </div>
+                </div>
+            </li> --> 
+        </ul>
+
+ <!-- Mobile Menu -->
+<button class="mobile-menu-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="mobile-menu">
+  <a href="/#communityRun" class="mobile-nav-link">Community Run</a>
+  <a href="/calendar/index.html" class="mobile-nav-link">Calendar</a>
+  <a href="/about/index.html" class="mobile-nav-link">About</a>
+  <a href="/contact/contact.html" class="mobile-nav-link">Contact</a>
+  <a href="/routes/index.html" class="mobile-nav-link">Routes</a>
+
+  <!-- 
+  <button class="mobile-communities-toggle">
+    Communities
+    <span class="mobile-dropdown-arrow"></span>
+  </button>
+
+  <div class="mobile-mega-menu">
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Base5</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="communities/dna-trails/index.html" class="mobile-community-item">
+      <div class="mobile-community-name">DNA Trails</div>
+      <div class="mobile-community-desc">
+        Weekly Community Trail Run on Thursday 18:00. All levels welcome!
+      </div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Drop Movement</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">earlybirds</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Edelsten</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Kasa sportsclub</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Kiss ride</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Morningruns</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">OPEN</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
+    <a href="#" class="mobile-community-item">
+      <div class="mobile-community-name">Schwalben</div>
+      <div class="mobile-community-desc">Description goes here</div>
+    </a>
   </div>
+  -->
+</div>
+</header>
 
-
-</nav>
-
-
-  </header>
 
       <a href="#"
    id="stickyWhatsappTrigger"
@@ -134,13 +245,13 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
         </div>
         <div class="grid grid-cols-2 gap-4 mt-8">
             <img
-  src="assets/img/PXL_20241109_090337105.jpg"
+  src="/assets/img/PXL_20241109_090337105.jpg"
   alt="a group of trail runners in innsbruck area"
   width="1600" height="1067"   
   loading="lazy" decoding="async"
   class="w-full rounded-lg">
             <img
-  src="assets/img/PXL_20230830_091554949.jpg"
+  src="/assets/img/PXL_20230830_091554949.jpg"
   alt="people trail running in innsbruck"
   width="1600" height="1067"
   loading="lazy" decoding="async"
@@ -152,8 +263,8 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
 <section class="bg-white dark:bg-gray-900">
     <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
         
-        <div class="grid grid-cols-2 gap-4 mt-8 lg:mt-0"> <img class="w-full rounded-lg" src="assets/img/IMG_4709.jpg" alt="a group of trail runners having fun" loading="lazy">
-            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="assets/img/PXL_20250424_161841190.MP.jpg" alt="a group of trail runners in innsbruck area, near bierstindl" loading="lazy">
+        <div class="grid grid-cols-2 gap-4 mt-8 lg:mt-0"> <img class="w-full rounded-lg" src="/assets/img/IMG_4709.jpg" alt="a group of trail runners having fun" loading="lazy">
+            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="/assets/img/PXL_20250424_161841190.MP.jpg" alt="a group of trail runners in innsbruck area, near bierstindl" loading="lazy">
         </div>
 
         <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
@@ -214,7 +325,7 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
       <!-- Card -->
       <article class="flex rounded-lg shadow bg-gray-50 dark:bg-gray-800 overflow-hidden">
         <div class="team-pic">
-          <img src="assets/img/allard-sym-square.jpg" alt="Allard Sym Avatar" loading="lazy">
+          <img src="/assets/img/allard-sym-square.jpg" alt="Allard Sym Avatar" loading="lazy">
         </div>
         <div class="p-5">
           <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -235,7 +346,7 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
       <!-- Card -->
       <article class="flex rounded-lg shadow bg-gray-50 dark:bg-gray-800 overflow-hidden">
         <div class="team-pic">
-          <img src="assets/img/bente-square.jpg" alt="Bente Avatar" loading="lazy">
+          <img src="/assets/img/bente-square.jpg" alt="Bente Avatar" loading="lazy">
         </div>
         <div class="p-5">
           <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -256,7 +367,7 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
       <!-- Card -->
       <article class="flex rounded-lg shadow bg-gray-50 dark:bg-gray-800 overflow-hidden">
         <div class="team-pic">
-          <img src="assets/img/andi-square.png" alt="Andreas Avatar" loading="lazy">
+          <img src="/assets/img/andi-square.png" alt="Andreas Avatar" loading="lazy">
         </div>
         <div class="p-5">
           <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -276,7 +387,7 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
       <!-- Card -->
       <article class="flex rounded-lg shadow bg-gray-50 dark:bg-gray-800 overflow-hidden">
         <div class="team-pic">
-          <img src="assets/img/felix-square.jpg" alt="Felix Avatar" loading="lazy">
+          <img src="/assets/img/felix-square.jpg" alt="Felix Avatar" loading="lazy">
         </div>
         <div class="p-5">
           <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -324,46 +435,46 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
     <div class="grid gap-4">
         <div>
 
-             <img class="h-auto max-w-full rounded-lg" src="assets/img/IMG_6264.jpg" alt="Trail runners in winter in the snow" loading="lazy">
+             <img class="h-auto max-w-full rounded-lg" src="/assets/img/IMG_6264.jpg" alt="Trail runners in winter in the snow" loading="lazy">
         </div>
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/PXL_20250327_175117059.jpg" alt="" loading="lazy">
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/PXL_20250327_175117059.jpg" alt="" loading="lazy">
         </div>
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/imgesprach.jpg" alt="Runners connecting with each other and laughing" loading="lazy">
-        </div>
-    </div>
-    <div class="grid gap-4">
-        <div>
-         <img class="h-auto max-w-full rounded-lg" src="assets/img/Schuhprobe.jpg" alt="Runners testing shoes" loading="lazy">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/DachterassenView.jpg" alt="Runners having a drink on a rooftop after a run" loading="lazy">
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/PXL_20241109_082750871.MP.jpg" alt="Group picture of runners" loading="lazy">
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/imgesprach.jpg" alt="Runners connecting with each other and laughing" loading="lazy">
         </div>
     </div>
     <div class="grid gap-4">
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/IMG_5066.jpg" alt="Runners standing in circle" loading="lazy">
+         <img class="h-auto max-w-full rounded-lg" src="/assets/img/Schuhprobe.jpg" alt="Runners testing shoes" loading="lazy">
         </div>
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/IATF.jpg" alt="IATF innsbruck Alpine Trailrun Festival" loading="lazy">
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/DachterassenView.jpg" alt="Runners having a drink on a rooftop after a run" loading="lazy">
         </div>
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/PXL_20230727_163128250.jpg" alt="Runners easy pace" loading="lazy">
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/PXL_20241109_082750871.MP.jpg" alt="Group picture of runners" loading="lazy">
         </div>
     </div>
     <div class="grid gap-4">
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/PXL_20240502_164953641.jpg" alt="runners meeting up for a run" loading="lazy">
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/IMG_5066.jpg" alt="Runners standing in circle" loading="lazy">
         </div>
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/20231109_180711.jpg" alt="Runners meeting in winter time after dark" loading="lazy">
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/IATF.jpg" alt="IATF innsbruck Alpine Trailrun Festival" loading="lazy">
         </div>
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="assets/img/PXL_20230928_165307165.MP.jpg" alt="Beginner trail runners" loading="lazy">
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/PXL_20230727_163128250.jpg" alt="Runners easy pace" loading="lazy">
+        </div>
+    </div>
+    <div class="grid gap-4">
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/PXL_20240502_164953641.jpg" alt="runners meeting up for a run" loading="lazy">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/20231109_180711.jpg" alt="Runners meeting in winter time after dark" loading="lazy">
+        </div>
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src="/assets/img/PXL_20230928_165307165.MP.jpg" alt="Beginner trail runners" loading="lazy">
         </div>
     </div>
 </div>
@@ -504,7 +615,7 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
 <a href="https://www.instagram.com/dna.trails/" class="flex items-center">
-  <img src="assets/logos/dna-trails-logo-black.png" alt="DNA Trails Logo" class="h-8 me-2" loading="lazy">
+  <img src="/assets/logos/dna-trails-logo-black.png" alt="DNA Trails Logo" class="h-8 me-2" loading="lazy">
   <span class="text-2xl tracking-tight font-extrabold text-gray-900 dark:text-white leading-tight mt-0.5">DNA Trails</span>
 </a>
 
