@@ -8,7 +8,14 @@
 
      <title>Innsbruck Trail Running Events & Community | DNA Trails</title> 
      <meta name="description" content="Looking for an Innsbruck run club? Join DNA Trails for free weekly trail runs and events! Our community welcomes all levels to explore the mountains around Innsbruck together.">
-<!-- Fallback favicon -->
+
+<meta property="og:title" content="DNA Trails Innsbruck — Community Trail Running" />
+<meta property="og:description" content="Join our free weekly community trail run every Thursday at 18:00. All levels welcome — explore Innsbruck’s trails together." />
+<meta property="og:image" content="https://trailrunninginnsbruck.com/assets/img/IMG_4711.jpg" />
+<meta property="og:url" content="https://trailrunninginnsbruck.com/" />
+<meta property="og:type" content="website" />
+
+     <!-- Fallback favicon -->
      <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Light mode favicon -->
 <link rel="icon" href="favicon-dark.ico" media="(prefers-color-scheme: light)" type="image/png">
@@ -680,6 +687,52 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
 </div>
 </footer>
 <script src="/scripts/navbar.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "DNA Trails Community Run",
+  "description": "Join our free weekly community trail run every Thursday at 18:00 in Innsbruck. All levels welcome — explore the trails around the city with the DNA Trails crew!",
+  "image": "https://trailrunninginnsbruck.com/assets/img/IMG_4711.jpg",
+  "startDate": "2025-10-30T18:00:00+02:00",
+  "endDate": "2025-10-30T20:00:00+02:00",
+  "eventSchedule": {
+    "@type": "Schedule",
+    "repeatFrequency": "P1W",
+    "startDate": "2025-10-30",
+    "endDate": "2026-10-30",
+    "byDay": "TH"
+  },
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "DNA Trails Innsbruck",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Defreggerstrasse 12",
+      "addressLocality": "Innsbruck",
+      "postalCode": "6020",
+      "addressCountry": "AT"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://dnatrails.at/#communityRun",
+    "validFrom": "2025-10-01"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "DNA Trails Innsbruck",
+    "url": "https://trailrunninginnsbruck.com",
+    "logo": "https://trailrunninginnsbruck.com/assets/logos/dna-trails-logo-black.png"
+  }
+}
+</script>
+
 </body>
 
 </html>
