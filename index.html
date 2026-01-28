@@ -123,7 +123,7 @@
   href="calendar/index.html"
   class="inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-white bg-gradient-to-br from-sky-400 to-emerald-600 rounded-full shadow-lg hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-sky-200 transition duration-300 ease-in-out transform hover:scale-105 active:scale-95 text-center"
 >
-  Explore Upcoming Runs
+  Explore Upcoming Events
 </a>
         </div>
     </section>
@@ -230,10 +230,22 @@ Our mission is to make trail running accessible, free, and fun for everyone, no 
   </div>
 </section>
 
-<section id="event-cards" class="mb-10 md:mb-16 bg-white p-8 rounded-lg">
+<section id="event-cards" class="py-16 bg-gray-50 dark:bg-gray-900">
     <div class="mx-auto max-w-screen-xl px-4 lg:px-6">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white text-center">Upcoming Events</h2>
-        <div id="cardsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div class="text-center mb-12">
+            <h2 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white mb-4">Upcoming Events</h2>
+            <div class="h-1 w-20 bg-gradient-to-r from-sky-400 to-emerald-600 mx-auto rounded-full"></div>
+        </div>
+        
+        <div id="cardsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+
+        <div class="mt-12 text-center">
+            <a href="/calendar/index.html" class="inline-flex items-center px-6 py-3 border-2 border-sky-500 text-sky-600 font-bold rounded-full hover:bg-sky-500 hover:text-white transition-all duration-300 group">
+                View Full Event Calendar
+                <i class="fas fa-calendar-alt ml-2 group-hover:scale-110 transition-transform"></i>
+            </a>
+        </div>
     </div>
 </section>
 
