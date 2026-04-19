@@ -1,6 +1,4 @@
-
-  
-  const DATA_SOURCES = [
+const DATA_SOURCES = [
             { organizer: 'DNA Trails', singles: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=1538217407&single=true&output=tsv', recurring: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=1880778759&single=true&output=tsv', cancelled: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=2020183836&single=true&output=tsv' },
         ];
 
@@ -235,8 +233,39 @@
         }
 
         let monthOffset = 0;
+        const MIN_MONTH_OFFSET = -2;
         let activeFilter = 'all';
         let EVENTS = [];
+
+        /* Sport type → color mapping */
+        const SPORT_COLORS = {
+            'TRAIL RUN': '#2d6a4f',
+            'TRAIL RACE':         '#b5330a',
+            'road running':  '#1a6fa8',
+            'road':          '#1a6fa8',
+            'mtb':           '#7b4f12',
+            'mountain bike': '#7b4f12',
+            'cycling':       '#a05c00',
+            'hiking':        '#5c4a1e',
+            'hike':          '#5c4a1e',
+            'yoga':          '#8b2fc9',
+            'strength':      '#b5330a',
+            'swim':          '#1d7a8a',
+            'swimming':      '#1d7a8a',
+        };
+        /* Fallback palette for unknown types */
+        const FALLBACK_COLORS = ['#4a5568','#2c6e49','#1d6fa8','#7b4f12','#8b2fc9','#b5330a','#5c4a1e','#1d7a8a'];
+        const _sportColorCache = {};
+
+        function getSportColor(type) {
+            if (!type) return '#4a5568';
+            const key = type.toLowerCase().trim();
+            if (SPORT_COLORS[key]) return SPORT_COLORS[key];
+            if (_sportColorCache[key]) return _sportColorCache[key];
+            const idx = Math.abs([...key].reduce((a,c)=>a+c.charCodeAt(0),0)) % FALLBACK_COLORS.length;
+            _sportColorCache[key] = FALLBACK_COLORS[idx];
+            return _sportColorCache[key];
+        }
 
         const modalEl = document.getElementById('eventModal');
         const closeBtn = document.querySelector('.close-btn');
@@ -244,6 +273,16 @@
         const calendarGrid = document.getElementById('calendarGrid');
         const mobileListView = document.getElementById('mobileListView');
         const filterSelect = document.getElementById('filterSelect');
+        const prevBtn = document.getElementById('prevBtn');
+
+        function updateMonthNav() {
+            if (!prevBtn) return;
+            const isAtMinMonth = monthOffset <= MIN_MONTH_OFFSET;
+            prevBtn.disabled = isAtMinMonth;
+            prevBtn.setAttribute('aria-disabled', String(isAtMinMonth));
+            prevBtn.style.opacity = isAtMinMonth ? '0.45' : '1';
+            prevBtn.style.cursor = isAtMinMonth ? 'not-allowed' : 'pointer';
+        }
 
         function createGoogleCalendarLink(eventData) {
             const title = encodeURIComponent(eventData.title || '');
@@ -268,8 +307,9 @@
             modalTags.appendChild(organizerTag);
             
             const sportTag = document.createElement('span');
-            sportTag.className = 'tag';
+            sportTag.className = 'tag tag-sport';
             sportTag.textContent = eventData.type || 'Unknown';
+            sportTag.style.background = getSportColor(eventData.type);
             modalTags.appendChild(sportTag);
 
             document.getElementById('modal-time').textContent = `${fmtTime(new Date(eventData.start))}–${fmtTime(new Date(eventData.end))}`;
@@ -278,7 +318,7 @@
             
             const bookLink = document.getElementById('modal-book-link');
             bookLink.href = eventData.bookingUrl;
-            bookLink.style.display = eventData.bookingUrl ? 'inline-block' : 'none';
+            bookLink.style.display = eventData.bookingUrl ? 'inline-flex' : 'none';
             
             const calLink = document.getElementById('modal-cal-link');
             calLink.href = createGoogleCalendarLink(eventData);
@@ -287,8 +327,11 @@
         }
 
         function renderMonth() {
+            if (monthOffset < MIN_MONTH_OFFSET) monthOffset = MIN_MONTH_OFFSET;
             const today = new Date();
+            today.setHours(0, 0, 0, 0);
             const currentMonth = addMonths(startOfMonth(today), monthOffset);
+            updateMonthNav();
             
             monthTitle.textContent = currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
             
@@ -311,10 +354,14 @@
                 const dayCell = document.createElement('div');
                 dayCell.className = 'calendar-day';
                 
-                const isCurrentMonth = date.getMonth() === currentMonth.getMonth();
+                const isCurrentMonth =
+                    date.getMonth() === currentMonth.getMonth() &&
+                    date.getFullYear() === currentMonth.getFullYear();
                 const isToday = sameYMD(date, today);
+                const isPast = date < today && !isToday;
                 
                 if (!isCurrentMonth) dayCell.classList.add('other-month');
+                if (isPast) dayCell.classList.add('past');
                 if (isToday) dayCell.classList.add('today');
                 
                 const dayNumber = document.createElement('div');
@@ -334,6 +381,11 @@
                         if (activeFilter !== 'all' && event.type !== activeFilter) {
                             pill.classList.add('filtered');
                         }
+                        if (event.type) {
+                            pill.dataset.sport = event.type;
+                            const sportColor = getSportColor(event.type);
+                            pill.style.borderLeftColor = sportColor;
+                        }
                         
                         const pillTitle = document.createElement('div');
                         pillTitle.className = 'event-pill-title';
@@ -344,6 +396,14 @@
                         pillTime.className = 'event-pill-time';
                         pillTime.textContent = fmtTime(new Date(event.start));
                         pill.appendChild(pillTime);
+
+                        if (event.type) {
+                            const pillType = document.createElement('span');
+                            pillType.className = 'event-pill-type';
+                            pillType.textContent = event.type;
+                            pillType.style.background = getSportColor(event.type);
+                            pill.appendChild(pillType);
+                        }
                         
                         pill.addEventListener('click', () => showModal(event));
                         eventsContainer.appendChild(pill);
@@ -385,6 +445,9 @@
                 if (activeFilter !== 'all' && event.type !== activeFilter) {
                     item.classList.add('filtered');
                 }
+                if (event.type) {
+                    item.style.borderLeftColor = getSportColor(event.type);
+                }
                 
                 const eventDate = new Date(event.start);
                 const dateStr = eventDate.toLocaleDateString('en-US', { 
@@ -417,8 +480,9 @@
                 tagsDiv.appendChild(orgTag);
                 
                 const typeTag = document.createElement('span');
-                typeTag.className = 'tag';
+                typeTag.className = 'tag tag-sport';
                 typeTag.textContent = event.type;
+                typeTag.style.background = getSportColor(event.type);
                 tagsDiv.appendChild(typeTag);
                 
                 item.appendChild(tagsDiv);
@@ -446,7 +510,8 @@
             if (e.target == modalEl) modalEl.classList.remove('active');
         });
 
-        document.getElementById('prevBtn').addEventListener('click', () => {
+        prevBtn.addEventListener('click', () => {
+            if (monthOffset <= MIN_MONTH_OFFSET) return;
             monthOffset--;
             renderMonth();
         });

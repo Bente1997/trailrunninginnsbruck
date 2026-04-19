@@ -1,332 +1,663 @@
-  :root{
-            --accent:#FFCCC9; --ink:#0f172a; --muted:#64748b; --bg:#ffffff; --card:#ffffff; --ring:#e2e8f0;
-            --radius:14px; --pageMax:1200px;
-        }
-        *{box-sizing:border-box}
-        body{font-family:Inter,system-ui,Arial,sans-serif; color:var(--ink); margin:0; background:var(--bg);} 
-        .container{max-width:var(--pageMax); margin:0 auto; padding:0 1rem;}
+/* ─────────────────────────────────────────────
+   DNA Trails Calendar  •  Trail Running Aesthetic
+   ───────────────────────────────────────────── */
 
-        .toolbar{display:flex; gap:.75rem; align-items:center; justify-content:space-between; padding:1rem 1.25rem; position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--ring); z-index:5}
-        .title{display:flex; align-items:center; gap:.75rem; flex-wrap:wrap}
-        .title h1{font-size:1.3rem; margin:0; font-weight:700}
-        .btn{padding:.5rem .8rem; border:1px solid var(--ring); border-radius:10px; background:white; cursor:pointer; font-size:1rem}
-        .btn:hover{filter:brightness(0.98)}
-        .controls{display:flex; gap:.5rem; align-items:center;}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 
-        select.filterSelect {
-            padding: .4rem .7rem;
-            border: 1px solid var(--ring);
-            border-radius: 999px;
-            background: white;
-            color: var(--muted);
-            font-size: 1rem;
-            appearance: none;
-            cursor: pointer;
-            min-width: 110px;
-        }
+:root {
+  /* Core palette — mountain stone + trail pink */
+  --accent:      #e8365d;
+  --accent-soft: rgba(232, 54, 93, 0.12);
+  --ink:         #141414;
+  --ink-mid:     #3d3d3d;
+  --muted:       #7a7a7a;
+  --muted-light: #b0b0b0;
+  --bg:          #f7f6f4;
+  --surface:     #ffffff;
+  --ring:        #e4e2de;
+  --ring-dark:   #c9c7c2;
 
-        .calendar-wrapper {
-            padding: 1.5rem 1rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+  --radius:      12px;
+  --radius-sm:   8px;
+  --pageMax:     1280px;
 
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 1px;
-            background: var(--ring);
-            border: 1px solid var(--ring);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
+  /* Sport type color palette — distinct, vivid but natural */
+  --sport-trail:    #2d6a4f;
+  --sport-road:     #1a6fa8;
+  --sport-mtb:      #7b4f12;
+  --sport-hike:     #5c4a1e;
+  --sport-yoga:     #8b2fc9;
+  --sport-strength: #b5330a;
+  --sport-swim:     #1d7a8a;
+  --sport-cycle:    #a05c00;
+  --sport-other:    #4a5568;
+}
 
-        .day-header-cell {
-            background: var(--bg);
-            padding: 0.75rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+*, *::before, *::after { box-sizing: border-box; }
 
-        .calendar-day {
-            background: var(--bg);
-            min-height: 120px;
-            padding: 0.5rem;
-            position: relative;
-        }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: var(--ink);
+  margin: 0;
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
 
-        .calendar-day.other-month {
-            background: #fafafa;
-            opacity: 0.6;
-        }
+/* ── Container ───────────────────────────── */
+.container {
+  max-width: var(--pageMax);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
 
-        .calendar-day.today {
-            background: rgba(255, 204, 201, 0.1);
-        }
+/* ── Toolbar ─────────────────────────────── */
+.toolbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  background: rgba(247, 246, 244, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ring);
+  z-index: 10;
+}
 
-        .day-number {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-        }
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
 
-        .calendar-day.today .day-number {
-            background: var(--accent);
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+.title h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
 
-        .day-events {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
+.btn {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--ring-dark);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--ink-mid);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  line-height: 1;
+}
 
-        .event-pill {
-            background: var(--card);
-            border: 1px solid var(--ring);
-            border-radius: 8px;
-            padding: 0.4rem 0.5rem;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-        }
+.btn:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
 
-        .event-pill:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-        .event-pill.filtered {
-            display: none;
-        }
+/* ── Filter pill select ──────────────────── */
+select.filterSelect {
+  padding: 0.42rem 2rem 0.42rem 0.85rem;
+  border: 1px solid var(--ring-dark);
+  border-radius: 999px;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a7a7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 0.6rem center;
+  color: var(--ink-mid);
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 500;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
 
-        .event-pill-title {
-            font-weight: 600;
-            color: var(--ink);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+select.filterSelect:hover,
+select.filterSelect:focus {
+  border-color: var(--accent);
+  outline: none;
+}
 
-        .event-pill-time {
-            color: var(--muted);
-            font-size: 0.75rem;
-        }
+/* ── Calendar wrapper ────────────────────── */
+.calendar-wrapper {
+  padding: 1.5rem 0.75rem 2rem;
+  max-width: var(--pageMax);
+  margin: 0 auto;
+}
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10; 
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease-in;
-        }
-        .modal.active {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-content {
-            background-color: var(--bg);
-            padding: 2rem;
-            border-radius: var(--radius);
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            transform: scale(0.9);
-            opacity: 0;
-            transition: transform 0.3s ease-in, opacity 0.3s ease-in;
-        }
-        .modal.active .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
+/* ── Grid ────────────────────────────────── */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: var(--ring);
+  border: 1px solid var(--ring);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
 
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--muted);
-        }
+/* ── Day headers ─────────────────────────── */
+.day-header-cell {
+  background: var(--surface);
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
 
-        .modal-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin: 0.5rem 0 1rem 0;
-        }
+/* ── Day cells ───────────────────────────── */
+.calendar-day {
+  background: var(--surface);
+  min-height: 118px;
+  padding: 0.55rem 0.5rem 0.5rem;
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  transition: background 0.15s;
+}
 
-        .tag {
-            padding: 0.2rem 0.6rem;
-            border: 1px solid var(--ring);
-            border-radius: 999px;
-            color: var(--muted);
-            font-size: 0.85rem;
-        }
+.calendar-day.other-month {
+  background: #f3f2f0;
+}
 
-        .modal-cta {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: .5rem 1rem;
-            background: var(--accent);
-            color: white;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-        }
+.calendar-day.other-month .day-number {
+  color: #c5c3bf;
+}
 
-        .add-to-cal-btn {
-            display: inline-block;
-            margin-top: 0.5rem;
-            margin-left: 0.5rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--ring);
-            border-radius: 10px;
-            background: var(--bg);
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
+.calendar-day.other-month .event-pill {
+  background: #f4f2ef;
+  border-color: #ddd9d3;
+  border-left-color: #d4d0ca !important;
+  box-shadow: none;
+}
 
-        /* Mobile List View */
-        .mobile-list-view {
-            display: none;
-        }
+.calendar-day.other-month .event-pill-title,
+.calendar-day.other-month .event-pill-time {
+  color: #a8a39c;
+}
 
-        .event-list-item {
-            background: var(--card);
-            border: 1px solid var(--ring);
-            border-radius: var(--radius);
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+.calendar-day.other-month .event-pill-type {
+  background: #d4d0ca !important;
+  color: #fffaf5;
+}
 
-        .event-list-item:hover {
-            border-color: var(--accent);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
+.calendar-day.other-month .event-pill:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: #ddd9d3;
+  border-left-color: #d4d0ca !important;
+}
 
-        .event-list-item.filtered {
-            display: none;
-        }
+.calendar-day.past {
+  background: #f9f8f6;
+}
 
-        .event-list-date {
-            font-size: 0.85rem;
-            color: var(--muted);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
+.calendar-day.past .day-number {
+  color: #c0bfbb;
+}
 
-        .event-list-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 0.4rem;
-        }
+/* Subtle past wash on pills handled via opacity below */
+.calendar-day.past .event-pill {
+  background: #f4f2ef;
+  border-color: #ddd9d3;
+  border-left-color: #d4d0ca !important;
+  box-shadow: none;
+}
 
-        .event-list-time {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-bottom: 0.5rem;
-        }
+.calendar-day.past .event-pill-title,
+.calendar-day.past .event-pill-time {
+  color: #a8a39c;
+}
 
-        .event-list-tags {
-            display: flex;
-            gap: 0.4rem;
-            flex-wrap: wrap;
-        }
+.calendar-day.past .event-pill-type {
+  background: #d4d0ca !important;
+  color: #fffaf5;
+}
 
-        .event-list-location {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-top: 0.4rem;
-        }
+.calendar-day.past .event-pill:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: #ddd9d3;
+  border-left-color: #d4d0ca !important;
+}
 
-        @media (max-width: 768px) {
-            .title h1 {
-                font-size: 1.1rem;
-            }
-            
-            .calendar-wrapper {
-                display: none;
-            }
-            
-            .mobile-list-view {
-                display: block;
-                padding: 1rem;
-                max-width: 600px;
-                margin: 0 auto;
-            }
-            
-            .mobile-list-empty {
-                text-align: center;
-                color: var(--muted);
-                padding: 2rem;
-                font-style: italic;
-            }
-        }
+.calendar-day.today {
+  background: linear-gradient(160deg, rgba(232,54,93,0.07) 0%, rgba(232,54,93,0.02) 100%);
+  box-shadow: inset 0 0 0 2px rgba(232,54,93,0.35);
+}
 
-        /* --- Loading overlay --- */
+/* ── Day number ──────────────────────────── */
+.day-number {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-mid);
+  margin-bottom: 0.45rem;
+  font-family: 'DM Mono', monospace;
+  line-height: 1;
+}
+
+.calendar-day.today .day-number {
+  background: var(--accent);
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 3px rgba(232,54,93,0.2);
+  font-family: 'DM Mono', monospace;
+}
+
+/* ── Day events container ────────────────── */
+.day-events {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+}
+
+/* ── Event pill ──────────────────────────── */
+.event-pill {
+  background: var(--surface);
+  border: 1px solid var(--ring);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.5rem;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* Color bar on left via border-left */
+  border-left-width: 3px;
+  border-left-color: var(--sport-other);
+  position: relative;
+}
+
+.event-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  border-color: var(--ring-dark);
+  border-left-color: inherit;
+}
+
+.event-pill.filtered {
+  display: none;
+}
+
+.event-pill-title {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: normal;
+  line-height: 1.25;
+  display: block;
+  font-size: 0.77rem;
+}
+
+.event-pill-time {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-family: 'DM Mono', monospace;
+}
+
+/* Sport type badge on pill */
+.event-pill-type {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  margin-top: 0.15rem;
+  width: fit-content;
+  color: white;
+  background: var(--sport-other);
+}
+
+/* ── Sport type color mapping ─────────────── */
+/* Applied via JS data-sport attribute */
+.event-pill[data-sport="Trail Running"],
+.event-pill[data-sport="trail running"],
+.event-pill[data-sport="Trail"] {
+  border-left-color: var(--sport-trail);
+}
+.event-pill[data-sport="Trail Running"] .event-pill-type,
+.event-pill[data-sport="trail running"] .event-pill-type,
+.event-pill[data-sport="Trail"] .event-pill-type {
+  background: var(--sport-trail);
+}
+
+.event-pill[data-sport="Road Running"],
+.event-pill[data-sport="road running"],
+.event-pill[data-sport="Road"] {
+  border-left-color: var(--sport-road);
+}
+.event-pill[data-sport="Road Running"] .event-pill-type,
+.event-pill[data-sport="road running"] .event-pill-type,
+.event-pill[data-sport="Road"] .event-pill-type {
+  background: var(--sport-road);
+}
+
+.event-pill[data-sport="MTB"],
+.event-pill[data-sport="Mountain Bike"],
+.event-pill[data-sport="Cycling"] {
+  border-left-color: var(--sport-mtb);
+}
+.event-pill[data-sport="MTB"] .event-pill-type,
+.event-pill[data-sport="Mountain Bike"] .event-pill-type,
+.event-pill[data-sport="Cycling"] .event-pill-type {
+  background: var(--sport-mtb);
+}
+
+.event-pill[data-sport="Hiking"],
+.event-pill[data-sport="hiking"],
+.event-pill[data-sport="Hike"] {
+  border-left-color: var(--sport-hike);
+}
+.event-pill[data-sport="Hiking"] .event-pill-type,
+.event-pill[data-sport="hiking"] .event-pill-type,
+.event-pill[data-sport="Hike"] .event-pill-type {
+  background: var(--sport-hike);
+}
+
+/* Dynamic sport colors applied via JS for unknown types */
+
+/* ── Modal ───────────────────────────────── */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20,20,20,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--surface);
+  padding: 2rem 2.25rem;
+  border-radius: 18px;
+  max-width: 520px;
+  width: 92%;
+  position: relative;
+  transform: translateY(12px) scale(0.97);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.34,1.4,0.64,1), opacity 0.25s ease;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.modal.active .modal-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.modal-content h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+  padding-right: 2rem;
+  line-height: 1.3;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.4rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+.close-btn:hover { background: var(--ring); }
+
+.modal-tags {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.tag {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--ring-dark);
+  border-radius: 999px;
+  color: var(--ink-mid);
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--bg);
+}
+
+/* Sport tag in modal gets color */
+.tag.tag-sport {
+  color: white;
+  border: none;
+  background: var(--sport-other);
+}
+
+#modal-time, #modal-location, #modal-desc {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+}
+
+#modal-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+#modal-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--ring);
+}
+
+.modal-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: filter 0.15s, transform 0.15s;
+}
+.modal-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+.add-to-cal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--ring-dark);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink-mid);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+.add-to-cal-btn:hover {
+  border-color: var(--ink-mid);
+  background: var(--surface);
+}
+
+/* ── Mobile list view ────────────────────── */
+.mobile-list-view {
+  display: none;
+}
+
+.event-list-item {
+  background: var(--surface);
+  border: 1px solid var(--ring);
+  border-left: 4px solid var(--sport-other);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.65rem;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.event-list-item:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.event-list-item.filtered {
+  display: none;
+}
+
+.event-list-date {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.event-list-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.event-list-time {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 0.55rem;
+}
+
+.event-list-tags {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.event-list-location {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+.mobile-list-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 3rem 1rem;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 768px) {
+  .title h1 { font-size: 1rem; }
+  .toolbar { padding: 0.75rem 1rem; }
+
+  .calendar-wrapper { display: none; }
+
+  .mobile-list-view {
+    display: block;
+    padding: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* ── Loading overlay ─────────────────────── */
 .loading-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255,255,255,0.9);
+  background: rgba(247,246,244,0.92);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 50;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 200;
   opacity: 0;
-  animation: fadeIn 0.3s ease forwards;
+  animation: fadeIn 0.2s ease forwards;
 }
+
 @keyframes fadeIn { to { opacity: 1; } }
 
 .loading-spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid #e2e8f0;
-  border-top-color: var(--accent, #FFCCC9);
+  width: 42px;
+  height: 42px;
+  border: 3px solid var(--ring-dark);
+  border-top-color: var(--accent);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s linear infinite;
   margin-bottom: 1rem;
 }
 
 .loading-text {
-  font-family: Inter, system-ui, Arial, sans-serif;
-  font-size: 1rem;
-  color: var(--muted, #64748b);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .loading-overlay.hidden {
   opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }

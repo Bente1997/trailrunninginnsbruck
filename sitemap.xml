@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/index.html</loc>
+    <loc>https://trailrunninginnsbruck.com/</loc>
   </url>
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/calendar/index.html</loc>
+    <loc>https://trailrunninginnsbruck.com/calendar/</loc>
   </url>
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/about/index.html</loc>
+    <loc>https://trailrunninginnsbruck.com/about/</loc>
   </url>
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/contact/index.html</loc>
+    <loc>https://trailrunninginnsbruck.com/contact/</loc>
   </url>
   <url>
-    <loc>https://www.trailrunninginnsbruck.com/routes/index.html</loc>
+    <loc>https://trailrunninginnsbruck.com/routes/</loc>
+  </url>
+  <url>
+    <loc>https://trailrunninginnsbruck.com/blog/</loc>
+  </url>
+  <url>
+    <loc>https://trailrunninginnsbruck.com/blog/langlauf-course-seefeld-2026.html</loc>
   </url>
 </urlset>
-

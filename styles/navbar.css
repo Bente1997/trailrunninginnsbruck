@@ -268,7 +268,7 @@
 
         .community-item:hover {
 
-            background: rgba(255, 204, 201, 0.15);
+            background: rgba(236, 72, 153, 0.15);
 
             transform: translateX(4px);
 
@@ -476,7 +476,7 @@
 
         .mobile-communities-toggle:hover {
 
-            background: rgba(255, 204, 201, 0.15);
+            background: rgba(236, 72, 153, 0.15);
 
             border-radius: 8px;
 
@@ -546,7 +546,7 @@
 
         .mobile-community-item:hover {
 
-            background: rgba(255, 204, 201, 0.15);
+            background: rgba(236, 72, 153, 0.15);
 
             transform: translateX(4px);
 
