@@ -3,7 +3,6 @@
 .RData
 .Ruserdata
 blog/
-components/
 index-test.html
 posts.json
 scripts/blog-engine.js

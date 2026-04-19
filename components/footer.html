@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div id="whatsappSecurityModal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4">
+    <div class="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm" data-whatsapp-overlay-backdrop></div>
+    <div class="relative w-full max-w-sm p-8 border border-gray-200 rounded-2xl shadow-2xl bg-white dark:bg-gray-800" role="dialog">
+        <div class="flex justify-between items-center mb-4">
+            <p class="text-lg font-bold text-gray-900 dark:text-white leading-tight">Bot Check 🏃‍♂️</p>
+            <button id="closeWhatsappModal" class="text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+        </div>
+        <p class="mb-5 text-gray-600 dark:text-gray-400 text-sm">How much is 25 minus 15? Enter numbers only.</p>
+        <div class="flex gap-2">
+            <input type="text" id="whatsappAnswerInput" placeholder="?" class="w-20 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <button id="revealWhatsappLinkBtn" class="flex-1 px-4 py-2 bg-pink-500 text-white font-bold rounded-lg hover:bg-pink-600 transition-all">Verify</button>
+        </div>
+        <div id="whatsappActualLinkDisplay" class="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700 hidden">
+            <a href="#" id="whatsappFinalLink" target="_blank" class="flex items-center justify-center gap-3 text-pink-500 font-bold hover:scale-105 transition-transform">
+                <i class="fab fa-whatsapp text-2xl"></i>
+                <span>Enter WhatsApp Group</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer class="relative z-10 bg-white dark:bg-gray-900 pb-24">
+    <div class="mx-auto w-full max-w-screen-xl px-4 pt-16">
+        
+        <div class="flex flex-col items-center justify-center text-center mb-12">
+            <a href="/" class="flex flex-col items-center group">
+                <img src="/assets/logos/dna-trails-logo-black.png" alt="DNA Trails Logo" class="h-12 w-auto mb-3 transition-transform group-hover:scale-105">
+                <span class="text-3xl tracking-tighter font-black text-gray-900 dark:text-white  leading-none">
+                    DNA Trails
+                </span>
+            </a>
+            <p class="mt-4 text-gray-500 dark:text-gray-400 font-medium max-w-sm italic">
+                The trail running community of Innsbruck
+            </p>
+        </div>
+
+        <div class="flex flex-col items-center justify-center space-y-8">
+            <div class="flex justify-center space-x-10">
+                <a href="https://strava.app.link/LBVDAzxYnUb" target="_blank" class="text-pink-500 hover:scale-110 transition-transform">
+                    <i class="fab fa-strava text-3xl"></i>
+                </a>
+                <a href="https://www.instagram.com/dna.trails/" target="_blank" class="text-pink-500 hover:scale-110 transition-transform">
+                    <i class="fab fa-instagram text-3xl"></i>
+                </a>
+                <a href="#" id="initialWhatsappTrigger" class="text-pink-500 hover:scale-110 transition-transform">
+                    <i class="fab fa-whatsapp text-3xl"></i>
+                </a>
+            </div>
+            
+            <span class="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold">
+                © 2026 DNA Trails Innsbruck
+            </span>
+        </div>
+    </div>
+</footer>
