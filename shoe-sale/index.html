@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shoe Sale • DNA Trails Innsbruck</title>
+    <meta name="description" content="Browse our collection of trail running shoes. Find the perfect pair for your next adventure.">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://trailrunninginnsbruck.com/shoe-sale/" />
+
+    <!-- Light mode favicon -->
+    <link rel="icon" href="/favicon-light.ico" media="(prefers-color-scheme: light)" type="image/png">
+
+    <!-- Dark mode favicon -->
+    <link rel="icon" href="/favicon-dark.ico" media="(prefers-color-scheme: dark)" type="image/png">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/shoe-sale.css">
+
+    <script defer src="/scripts/shoe-sale.js"></script>
+</head>
+
+<body data-sheet-url="https://docs.google.com/spreadsheets/d/e/2PACX-1vRxTlj9UqIlaEkT5P9IvXMg4LuABRuYP-1YXAM3uFKkx23RDataqNXMQo3xqXs7NdAzfZELksk85ZQ2/pub?gid=0&amp;single=true&amp;output=tsv">
+    <header id="navbar-placeholder"></header>
+
+    <!-- Mobile Menu -->
+    <button class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="mobile-menu">
+        <a href="/#communityRun" class="mobile-nav-link">Community Run</a>
+        <a href="/calendar/" class="mobile-nav-link">Calendar</a>
+        <a href="/routes/" class="mobile-nav-link">Routes</a>
+        <a href="/about/" class="mobile-nav-link">About</a>
+        <a href="/contact/" class="mobile-nav-link">Contact</a>
+    </div>
+
+    <div class="container">
+        <div class="filters-panel">
+            <div class="filters-header">
+                <h2>Filters</h2>
+                <button class="filters-toggle" id="filtersToggle">
+                    <span>Show</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
+            </div>
+
+            <div class="filters-content" id="filtersContent">
+                <div class="filter-group">
+                    <label for="filterSize" class="filter-label">Size</label>
+                    <select id="filterSize" class="filter-select">
+                        <option value="">All Sizes</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterType" class="filter-label">Type</label>
+                    <select id="filterType" class="filter-select">
+                        <option value="">All Types</option>
+                        <option value="trail">Trail Running</option>
+                        <option value="road">Road Running</option>
+                        <option value="hiking">Hiking</option>
+                        <option value="mtb">MTB</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterCondition" class="filter-label">Condition</label>
+                    <select id="filterCondition" class="filter-select">
+                        <option value="">All Conditions</option>
+                        <option value="new">New</option>
+                        <option value="excellent">Excellent</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterPrice" class="filter-label">Max Price</label>
+                    <input type="range" id="filterPrice" class="filter-range" min="0" max="300" value="300" step="10">
+                    <div class="price-display">
+                        <span>Up to €</span>
+                        <span id="priceValue">300</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" id="resetFilters">Reset Filters</button>
+            </div>
+        </div>
+
+        <div class="products-wrapper">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products loaded here -->
+            </div>
+            <div id="noResults" class="no-results hidden">
+                <p id="noResultsMessage">No shoes match your filters. Try adjusting your criteria.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/navbar-footer.js"></script>
+    <script data-goatcounter="https://dnatrails.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <footer id="footer-placeholder"></footer>
+</body>
+</html>
