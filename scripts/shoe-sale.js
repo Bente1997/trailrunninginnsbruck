@@ -332,7 +332,7 @@ function renderProducts(productsToShow) {
 
   noResults.classList.add('hidden');
   productsGrid.innerHTML = productsToShow
-    .map((product) => createProductCard(product))
+    .map((product, index) => createProductCard(product, index))
     .join('');
 
   productsToShow.forEach((product) => {
@@ -346,10 +346,12 @@ function renderConfigMessage(message) {
   noResults.classList.remove('hidden');
 }
 
-function createProductCard(product) {
+function createProductCard(product, index) {
   const actionText = product.status === 'sold' ? 'Sold Out' : 'Contact';
   const actionDisabled = product.status === 'sold' ? 'disabled' : '';
   const actionHref = product.status === 'sold' ? '#' : '/contact/';
+  const imageLoading = index < 4 ? 'eager' : 'lazy';
+  const imageFetchPriority = index < 2 ? 'high' : 'low';
 
   return `
     <div class="product-card" data-product-id="${escapeHtml(product.id)}">
@@ -359,6 +361,11 @@ function createProductCard(product) {
           alt="${escapeHtml(`${product.title} size ${product.sizeLabel}`)}"
           class="product-image"
           data-carousel="${escapeHtml(product.id)}"
+          loading="${imageLoading}"
+          decoding="async"
+          fetchpriority="${imageFetchPriority}"
+          width="800"
+          height="800"
         >
 
         <div class="carousel-controls">
@@ -420,6 +427,7 @@ function setupCarousel(productId, images) {
   const prevButton = container.querySelector(`button[data-product="${CSS.escape(productId)}"][data-action="prev"]`);
   const nextButton = container.querySelector(`button[data-product="${CSS.escape(productId)}"][data-action="next"]`);
   let currentIndex = 0;
+  let prefetched = false;
 
   if (images.length <= 1) {
     if (prevButton) prevButton.style.display = 'none';
@@ -436,28 +444,49 @@ function setupCarousel(productId, images) {
     });
   }
 
+  function prefetchRemainingImages() {
+    if (prefetched) {
+      return;
+    }
+
+    prefetched = true;
+    images.slice(1).forEach((imageSrc) => {
+      const preloader = new Image();
+      preloader.decoding = 'async';
+      preloader.src = imageSrc;
+    });
+  }
+
   prevButton.addEventListener('click', (event) => {
     event.stopPropagation();
+    prefetchRemainingImages();
     updateCarousel(currentIndex - 1);
   });
 
   nextButton.addEventListener('click', (event) => {
     event.stopPropagation();
+    prefetchRemainingImages();
     updateCarousel(currentIndex + 1);
   });
 
   indicators.forEach((indicator, indicatorIndex) => {
     indicator.addEventListener('click', () => {
+      prefetchRemainingImages();
       updateCarousel(indicatorIndex);
     });
   });
 
+  container.addEventListener('pointerenter', prefetchRemainingImages, { once: true });
+  container.addEventListener('focusin', prefetchRemainingImages, { once: true });
+
   container.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowLeft') {
+      prefetchRemainingImages();
       updateCarousel(currentIndex - 1);
     }
 
     if (event.key === 'ArrowRight') {
+      prefetchRemainingImages();
       updateCarousel(currentIndex + 1);
     }
   });

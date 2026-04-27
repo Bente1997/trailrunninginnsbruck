@@ -224,6 +224,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  content-visibility: auto;
+  contain-intrinsic-size: 520px;
 }
 
 .product-card:hover {
