@@ -10,8 +10,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     catch { return ''; }
   };
   const photos = [
-    { src: '/assets/img/Dynafit-T2G-Innsbruck-104.webp', alt: 'Runners exploring the trails around Innsbruck' },
-    { src: '/assets/img/IMG_4709.jpg', alt: 'Good company on a community trail run' },
+    {
+      src: '/assets/img/responsive/Dynafit-T2G-Innsbruck-104.webp-640.webp',
+      srcset: '/assets/img/responsive/Dynafit-T2G-Innsbruck-104.webp-320.webp 320w, /assets/img/responsive/Dynafit-T2G-Innsbruck-104.webp-640.webp 640w, /assets/img/responsive/Dynafit-T2G-Innsbruck-104.webp-960.webp 960w',
+      alt: 'Runners exploring the trails around Innsbruck',
+      width: 640, height: 960
+    },
+    {
+      src: '/assets/img/responsive/IMG_4709.jpg-960.jpg',
+      srcset: '/assets/img/responsive/IMG_4709.jpg-160.jpg 160w, /assets/img/responsive/IMG_4709.jpg-480.jpg 480w, /assets/img/responsive/IMG_4709.jpg-960.jpg 960w, /assets/img/responsive/IMG_4709.jpg-1600.jpg 1600w',
+      alt: 'Good company on a community trail run',
+      width: 960, height: 1280
+    },
     {
       src: '/assets/img/responsive/Dynafit-T2G-Innsbruck-70.jpg-640.jpg',
       srcset: '/assets/img/responsive/Dynafit-T2G-Innsbruck-70.jpg-320.jpg 320w, /assets/img/responsive/Dynafit-T2G-Innsbruck-70.jpg-640.jpg 640w, /assets/img/responsive/Dynafit-T2G-Innsbruck-70.jpg-960.jpg 960w',

@@ -5,6 +5,28 @@
   const count = document.getElementById('route-count');
   const filters = document.querySelector('.route-filters');
   let allRoutes = [];
+  const photos = [
+    {
+      src: '/assets/img/responsive/PXL_20241109_090337105.jpg-960.jpg',
+      srcset: '/assets/img/responsive/PXL_20241109_090337105.jpg-160.jpg 160w, /assets/img/responsive/PXL_20241109_090337105.jpg-480.jpg 480w, /assets/img/responsive/PXL_20241109_090337105.jpg-960.jpg 960w, /assets/img/responsive/PXL_20241109_090337105.jpg-1600.jpg 1600w',
+      width: 960, height: 1275
+    },
+    {
+      src: '/assets/img/responsive/IMG_4709.jpg-960.jpg',
+      srcset: '/assets/img/responsive/IMG_4709.jpg-160.jpg 160w, /assets/img/responsive/IMG_4709.jpg-480.jpg 480w, /assets/img/responsive/IMG_4709.jpg-960.jpg 960w, /assets/img/responsive/IMG_4709.jpg-1600.jpg 1600w',
+      width: 960, height: 1280
+    },
+    {
+      src: '/assets/img/responsive/Dynafit-T2G-Innsbruck-89.webp-640.webp',
+      srcset: '/assets/img/responsive/Dynafit-T2G-Innsbruck-89.webp-320.webp 320w, /assets/img/responsive/Dynafit-T2G-Innsbruck-89.webp-640.webp 640w, /assets/img/responsive/Dynafit-T2G-Innsbruck-89.webp-960.webp 960w',
+      width: 640, height: 960
+    }
+  ];
+  const fallbackPhoto = {
+    src: '/assets/img/responsive/Dynafit-T2G-Innsbruck-51.webp-640.webp',
+    srcset: '/assets/img/responsive/Dynafit-T2G-Innsbruck-51.webp-320.webp 320w, /assets/img/responsive/Dynafit-T2G-Innsbruck-51.webp-640.webp 640w, /assets/img/responsive/Dynafit-T2G-Innsbruck-51.webp-960.webp 960w',
+    width: 640, height: 962
+  };
   const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   function safeURL(value) {
     try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : ''; }
@@ -48,16 +70,16 @@
     if (!routes.length) {
       container.innerHTML = '<p class="events-status">No routes match those filters. Try a different combination or clear the filters.</p>';
     }
-    const photos = ['PXL_20241109_090337105.jpg','IMG_4709.jpg','Dynafit-T2G-Innsbruck-89.webp'];
     routes.forEach((route, index) => {
       const name = route['Route Name'];
       const image = safeURL(route['Image URL']);
+      const photo = photos[allRoutes.indexOf(route) % photos.length];
       const embed = embeddedURL(route['Embed Code']);
       const map = safeURL(route['Map Link']) || (embed ? embed.replace(/\/embed(?=\?|$)/, '') : '');
       const card = document.createElement('article');
       card.className = 'route-card'; card.setAttribute('data-reveal', '');
       card.innerHTML = `
-        <div class="page-photo route-photo" data-drift><img src="${escapeHTML(image || '/assets/img/' + photos[allRoutes.indexOf(route) % photos.length])}" alt="${escapeHTML(image ? name : 'Trail scenery around Innsbruck')}" width="1000" height="700" loading="lazy" decoding="async"></div>
+        <div class="page-photo route-photo" data-drift><img src="${escapeHTML(image || photo.src)}" alt="${escapeHTML(image ? name : 'Trail scenery around Innsbruck')}" width="${image ? 1000 : photo.width}" height="${image ? 700 : photo.height}"${image ? '' : ` srcset="${photo.srcset}" sizes="(max-width: 767px) 90vw, 45vw"`} loading="lazy" decoding="async"></div>
         <div class="route-card-copy">
           <span class="eyebrow">${escapeHTML(route.Region || 'Around Innsbruck')} &middot; ${escapeHTML(route['Route Type'] || 'Trail')}</span>
           <h3>${escapeHTML(name)}</h3>
@@ -74,7 +96,11 @@
         wrapper.append(iframe); card.append(wrapper);
       }
       card.querySelector('img').addEventListener('error', event => {
-        event.target.src = '/assets/img/Dynafit-T2G-Innsbruck-51.webp';
+        event.target.sizes = '(max-width: 767px) 90vw, 45vw';
+        event.target.srcset = fallbackPhoto.srcset;
+        event.target.src = fallbackPhoto.src;
+        event.target.width = fallbackPhoto.width;
+        event.target.height = fallbackPhoto.height;
         event.target.alt = 'Trail scenery around Innsbruck';
       }, { once: true });
       container.append(card);
