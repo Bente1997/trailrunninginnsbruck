@@ -1,23 +1,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<div id="whatsappSecurityModal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4">
-    <div class="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm" data-whatsapp-overlay-backdrop></div>
-    <div class="relative w-full max-w-sm p-8 border border-gray-200 rounded-2xl shadow-2xl bg-white dark:bg-gray-800" role="dialog">
-        <div class="flex justify-between items-center mb-4">
-            <p class="text-lg font-bold text-gray-900 dark:text-white leading-tight">Bot Check 🏃‍♂️</p>
-            <button id="closeWhatsappModal" class="text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+<link rel="stylesheet" href="/styles/whatsapp.css">
+<div id="whatsappSecurityModal" data-turnstile-sitekey="0x4AAAAAAFckI0HeBBNnDnGY" data-verification-endpoint="https://dna-whatsapp.trailsdna.workers.dev/whatsapp" class="whatsapp-modal hidden">
+    <div class="whatsapp-backdrop" data-whatsapp-overlay-backdrop></div>
+    <div class="whatsapp-dialog" role="dialog" aria-modal="true" aria-labelledby="whatsapp-title" aria-describedby="whatsapp-description" tabindex="-1">
+        <button id="closeWhatsappModal" class="whatsapp-close" type="button" aria-label="Close WhatsApp dialog">&times;</button>
+        <span class="whatsapp-eyebrow">Your next Thursday starts here</span>
+        <h2 id="whatsapp-title">Join the trail people.</h2>
+        <p id="whatsapp-description">A quick check, then you can join our WhatsApp group for the latest runs and community updates.</p>
+        <div id="whatsappTurnstile" class="whatsapp-challenge"></div>
+        <p id="whatsapp-status" class="whatsapp-status" role="status" aria-live="polite"></p>
+        <button id="retryWhatsappVerification" class="whatsapp-retry" type="button" hidden>Try again</button>
+        <div id="whatsappActualLinkDisplay" hidden>
+            <a id="whatsappFinalLink" target="_blank" rel="noopener noreferrer" class="whatsapp-join">Enter WhatsApp group <span aria-hidden="true">&#8599;</span></a>
         </div>
-        <p class="mb-5 text-gray-600 dark:text-gray-400 text-sm">How much is 25 minus 15? Enter numbers only.</p>
-        <div class="flex gap-2">
-            <input type="text" id="whatsappAnswerInput" placeholder="?" class="w-20 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <button id="revealWhatsappLinkBtn" class="flex-1 px-4 py-2 bg-pink-500 text-white font-bold rounded-lg hover:bg-pink-600 transition-all">Verify</button>
-        </div>
-        <div id="whatsappActualLinkDisplay" class="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700 hidden">
-            <a href="#" id="whatsappFinalLink" target="_blank" class="flex items-center justify-center gap-3 text-pink-500 font-bold hover:scale-105 transition-transform">
-                <i class="fab fa-whatsapp text-2xl"></i>
-                <span>Enter WhatsApp Group</span>
-            </a>
-        </div>
+        <p class="whatsapp-help">Having trouble? <a href="/contact/">Contact the team</a>.</p>
     </div>
 </div>
 
@@ -49,6 +46,8 @@
                 </a>
             </div>
             
+            <nav class="footer-site-links" aria-label="Explore DNA Trails"><a href="/">Home</a><a href="/calendar/">Runs &amp; events</a><a href="/routes/">Routes</a><a href="/about/">Our story</a><a href="/faq/">FAQ</a><a href="/partners/">Partners</a><a href="/contact/">Contact</a></nav>
+
             <span class="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold">
                 © 2026 DNA Trails Innsbruck
             </span>

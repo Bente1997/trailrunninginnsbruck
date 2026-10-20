@@ -1,5 +1,5 @@
 const DATA_SOURCES = [
-            { organizer: 'DNA Trails', singles: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=1538217407&single=true&output=tsv', recurring: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=1880778759&single=true&output=tsv', cancelled: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=2020183836&single=true&output=tsv' },
+            { organizer: 'DNA Trails', singles: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=1538217407&single=true&output=csv', recurring: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=1880778759&single=true&output=csv', cancelled: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAyBf4cwkXSOi5zz36U-r9uuV8KroW60CEbkEXQ8vuoCL60kT3Zbg9hKwQFVUJfBl_Ttln1WW9roqS/pub?gid=2020183836&single=true&output=csv' },
         ];
 
         function addDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
@@ -14,6 +14,9 @@ const DATA_SOURCES = [
 
         async function fetchCSV(url){ const res=await fetch(url); if(!res.ok) throw new Error('CSV load failed'); return await res.text(); }
         function parseCSV(text){
+            // Sheets' CSV export preserves cell line breaks; its TSV export flattens them.
+            // Keep accepting tab-separated input for existing callers and saved feeds.
+            const delimiter = text.split(/\r?\n/, 1)[0].includes('\t') ? '\t' : ',';
             const rows=[]; let i=0, field='', row=[], inQuotes=false;
             function pushField(){ row.push(field); field=''; }
             function pushRow(){ rows.push(row); row=[]; }
@@ -26,7 +29,7 @@ const DATA_SOURCES = [
                     } else { field+=ch; i++; continue; }
                 } else {
                     if(ch==='"'){ inQuotes=true; i++; continue; }
-                    if(ch==='\t'){ pushField(); i++; continue; }
+                    if(ch===delimiter){ pushField(); i++; continue; }
                     if(ch==='\n'){ pushField(); pushRow(); i++; continue; }
                     if(ch==='\r'){ i++; continue; }
                     field+=ch; i++;
@@ -232,6 +235,7 @@ const DATA_SOURCES = [
             return all;
         }
 
+if (document.getElementById('calendarGrid')) {
         let monthOffset = 0;
         const MIN_MONTH_OFFSET = -2;
         let activeFilter = 'all';
@@ -239,26 +243,17 @@ const DATA_SOURCES = [
 
         /* Sport type → color mapping */
         const SPORT_COLORS = {
-            'TRAIL RUN': '#2d6a4f',
-            'TRAIL RACE':         '#b5330a',
-            'road running':  '#1a6fa8',
-            'road':          '#1a6fa8',
-            'mtb':           '#7b4f12',
-            'mountain bike': '#7b4f12',
-            'cycling':       '#a05c00',
-            'hiking':        '#5c4a1e',
-            'hike':          '#5c4a1e',
-            'yoga':          '#8b2fc9',
-            'strength':      '#b5330a',
-            'swim':          '#1d7a8a',
-            'swimming':      '#1d7a8a',
+            'trail run': '#687344', 'trail race': '#9b6545', 'trail running': '#687344',
+            'road running': '#7b8060', 'road': '#7b8060',
+            'mtb': '#8c7047', 'mountain bike': '#8c7047', 'cycling': '#9a7c44',
+            'hiking': '#657958', 'hike': '#657958', 'yoga': '#8b7777',
+            'strength': '#9b6545', 'swim': '#647c70', 'swimming': '#647c70'
         };
-        /* Fallback palette for unknown types */
-        const FALLBACK_COLORS = ['#4a5568','#2c6e49','#1d6fa8','#7b4f12','#8b2fc9','#b5330a','#5c4a1e','#1d7a8a'];
+        const FALLBACK_COLORS = ['#687344','#8c7047','#8b7777','#647c70','#9b6545','#7b8060'];
         const _sportColorCache = {};
 
         function getSportColor(type) {
-            if (!type) return '#4a5568';
+            if (!type) return '#687344';
             const key = type.toLowerCase().trim();
             if (SPORT_COLORS[key]) return SPORT_COLORS[key];
             if (_sportColorCache[key]) return _sportColorCache[key];
@@ -287,7 +282,7 @@ const DATA_SOURCES = [
         function createGoogleCalendarLink(eventData) {
             const title = encodeURIComponent(eventData.title || '');
             const location = encodeURIComponent(eventData.startplek || '');
-            const description = encodeURIComponent(eventData.beschrijving || '');
+            const description = encodeURIComponent(EventDescription.toPlainText(eventData.beschrijving || ''));
             const startDate = new Date(eventData.start);
             const endDate = new Date(eventData.end);
             const formatISO = (d) => d.toISOString().replace(/[:-]/g, '').slice(0, 15) + 'Z';
@@ -295,7 +290,13 @@ const DATA_SOURCES = [
             return `https://calendar.google.com/calendar/r/eventedit?text=${title}&dates=${dates}&details=${description}&location=${location}`;
         }
 
+        let modalReturnFocus;
+        function closeEventModal() {
+            modalEl.classList.remove('active');
+            modalReturnFocus?.focus();
+        }
         function showModal(eventData) {
+            modalReturnFocus = document.activeElement;
             document.getElementById('modal-title').textContent = eventData.title;
             
             const modalTags = document.getElementById('modal-tags');
@@ -312,9 +313,9 @@ const DATA_SOURCES = [
             sportTag.style.background = getSportColor(eventData.type);
             modalTags.appendChild(sportTag);
 
-            document.getElementById('modal-time').textContent = `${fmtTime(new Date(eventData.start))}–${fmtTime(new Date(eventData.end))}`;
-            document.getElementById('modal-location').innerHTML = `${eventData.startplek ? '📍 ' + eventData.startplek : 'No location specified'}`;
-            document.getElementById('modal-desc').textContent = eventData.beschrijving || 'No description available.';
+            document.getElementById('modal-time').textContent = `${new Date(eventData.start).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} \u00b7 ${fmtTime(new Date(eventData.start))}–${fmtTime(new Date(eventData.end))}`;
+            document.getElementById('modal-location').textContent = `${eventData.startplek ? '📍 ' + eventData.startplek : 'No location specified'}`;
+            document.getElementById('modal-desc').innerHTML = EventDescription.render(eventData.beschrijving || 'No description available.');
             
             const bookLink = document.getElementById('modal-book-link');
             bookLink.href = eventData.bookingUrl;
@@ -324,6 +325,7 @@ const DATA_SOURCES = [
             calLink.href = createGoogleCalendarLink(eventData);
             
             modalEl.classList.add('active');
+            closeBtn.focus();
         }
 
         function renderMonth() {
@@ -376,7 +378,8 @@ const DATA_SOURCES = [
                     eventsContainer.className = 'day-events';
                     
                     dayEvents.forEach(event => {
-                        const pill = document.createElement('div');
+                        const pill = document.createElement('button');
+                        pill.type = 'button';
                         pill.className = 'event-pill';
                         if (activeFilter !== 'all' && event.type !== activeFilter) {
                             pill.classList.add('filtered');
@@ -418,6 +421,14 @@ const DATA_SOURCES = [
 
             // Mobile list view
             renderMobileList(currentMonth);
+            const status = document.getElementById('calendar-status');
+            if (status && EVENTS.length) {
+                const matches = EVENTS.some(event => {
+                    const start = new Date(event.start);
+                    return start >= startOfMonth(currentMonth) && start <= endOfMonth(currentMonth) && (activeFilter === 'all' || event.type === activeFilter);
+                });
+                status.textContent = matches || matchMedia('(max-width: 768px)').matches ? '' : 'No matching events this month. Try another activity or month.';
+            }
         }
 
         function renderMobileList(currentMonth) {
@@ -428,86 +439,121 @@ const DATA_SOURCES = [
             
             const monthEvents = EVENTS.filter(e => {
                 const eventDate = new Date(e.start);
-                return eventDate >= monthStart && eventDate <= monthEnd;
+                return eventDate >= monthStart && eventDate <= monthEnd && (activeFilter === 'all' || e.type === activeFilter);
             }).sort((a, b) => new Date(a.start) - new Date(b.start));
             
             if (monthEvents.length === 0) {
                 const empty = document.createElement('div');
                 empty.className = 'mobile-list-empty';
-                empty.textContent = 'No events this month';
+                empty.textContent = activeFilter === 'all' ? 'No events this month' : 'No matching events this month. Try another activity or month.';
                 mobileListView.appendChild(empty);
                 return;
             }
             
-            monthEvents.forEach(event => {
-                const item = document.createElement('div');
-                item.className = 'event-list-item';
-                if (activeFilter !== 'all' && event.type !== activeFilter) {
-                    item.classList.add('filtered');
-                }
-                if (event.type) {
-                    item.style.borderLeftColor = getSportColor(event.type);
-                }
-                
-                const eventDate = new Date(event.start);
-                const dateStr = eventDate.toLocaleDateString('en-US', { 
-                    weekday: 'short', 
-                    month: 'short', 
-                    day: 'numeric' 
-                });
-                
-                const dateDiv = document.createElement('div');
-                dateDiv.className = 'event-list-date';
-                dateDiv.textContent = dateStr;
-                item.appendChild(dateDiv);
-                
-                const titleDiv = document.createElement('div');
-                titleDiv.className = 'event-list-title';
-                titleDiv.textContent = event.title;
-                item.appendChild(titleDiv);
-                
-                const timeDiv = document.createElement('div');
-                timeDiv.className = 'event-list-time';
-                timeDiv.textContent = `${fmtTime(new Date(event.start))} – ${fmtTime(new Date(event.end))}`;
-                item.appendChild(timeDiv);
-                
-                const tagsDiv = document.createElement('div');
-                tagsDiv.className = 'event-list-tags';
-                
-                const orgTag = document.createElement('span');
-                orgTag.className = 'tag';
-                orgTag.textContent = event.organizer;
-                tagsDiv.appendChild(orgTag);
-                
-                const typeTag = document.createElement('span');
-                typeTag.className = 'tag tag-sport';
-                typeTag.textContent = event.type;
-                typeTag.style.background = getSportColor(event.type);
-                tagsDiv.appendChild(typeTag);
-                
-                item.appendChild(tagsDiv);
-                
-                if (event.startplek) {
-                    const locationDiv = document.createElement('div');
-                    locationDiv.className = 'event-list-location';
-                    locationDiv.textContent = `📍 ${event.startplek}`;
-                    item.appendChild(locationDiv);
-                }
-                
-                item.addEventListener('click', () => showModal(event));
-                mobileListView.appendChild(item);
+            const now = new Date();
+            const upcomingEvents = monthEvents.filter(event => new Date(event.end) > now);
+            const pastEvents = monthEvents.filter(event => new Date(event.end) <= now);
+
+            if (upcomingEvents.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'mobile-list-empty';
+                empty.textContent = 'No upcoming events this month.';
+                mobileListView.appendChild(empty);
+            }
+
+            upcomingEvents.forEach(event => mobileListView.appendChild(createMobileEventCard(event)));
+
+            if (pastEvents.length) {
+                const history = document.createElement('details');
+                history.className = 'past-events';
+                const summary = document.createElement('summary');
+                summary.textContent = `Past events (${pastEvents.length})`;
+                history.appendChild(summary);
+                const list = document.createElement('div');
+                list.className = 'past-events-list';
+                pastEvents.forEach(event => list.appendChild(createMobileEventCard(event)));
+                history.appendChild(list);
+                mobileListView.appendChild(history);
+            }
+        }
+
+        function createMobileEventCard(event) {
+            const item = document.createElement('button');
+            item.type = 'button';
+            item.className = 'event-list-item';
+            if (event.type) {
+                item.style.borderLeftColor = getSportColor(event.type);
+            }
+
+            const eventDate = new Date(event.start);
+            const dateStr = eventDate.toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
             });
+
+            const dateDiv = document.createElement('div');
+            dateDiv.className = 'event-list-date';
+            dateDiv.textContent = dateStr;
+            item.appendChild(dateDiv);
+
+            const titleDiv = document.createElement('div');
+            titleDiv.className = 'event-list-title';
+            titleDiv.textContent = event.title;
+            item.appendChild(titleDiv);
+
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'event-list-time';
+            timeDiv.textContent = `${fmtTime(new Date(event.start))} – ${fmtTime(new Date(event.end))}`;
+            item.appendChild(timeDiv);
+
+            const tagsDiv = document.createElement('div');
+            tagsDiv.className = 'event-list-tags';
+
+            const orgTag = document.createElement('span');
+            orgTag.className = 'tag';
+            orgTag.textContent = event.organizer;
+            tagsDiv.appendChild(orgTag);
+
+            const typeTag = document.createElement('span');
+            typeTag.className = 'tag tag-sport';
+            typeTag.textContent = event.type;
+            typeTag.style.background = getSportColor(event.type);
+            tagsDiv.appendChild(typeTag);
+
+            item.appendChild(tagsDiv);
+
+            if (event.startplek) {
+                const locationDiv = document.createElement('div');
+                locationDiv.className = 'event-list-location';
+                locationDiv.textContent = `📍 ${event.startplek}`;
+                item.appendChild(locationDiv);
+            }
+
+            item.addEventListener('click', () => showModal(event));
+            return item;
         }
 
         function rebuildFilters() {
             const sports = Array.from(new Set(EVENTS.map(e => e.type).filter(Boolean))).sort();
-            const opts = ['<option value="all">All</option>'].concat(sports.map(t => `<option value="${t}">${t}</option>`));
+            const opts = ['<option value="all">All activities</option>'].concat(sports.map(t => `<option value="${t}">${t}</option>`));
             filterSelect.innerHTML = opts.join('');
         }
 
-        closeBtn.addEventListener('click', () => modalEl.classList.remove('active'));
+        closeBtn.addEventListener('click', closeEventModal);
         window.addEventListener('click', (e) => {
-            if (e.target == modalEl) modalEl.classList.remove('active');
+            if (e.target == modalEl) closeEventModal();
+        });
+
+        document.addEventListener('keydown', event => {
+            if (!modalEl.classList.contains('active')) return;
+            if (event.key === 'Escape') closeEventModal();
+            if (event.key === 'Tab') {
+                const items = [...modalEl.querySelectorAll('button, a[href]')].filter(el => el.getClientRects().length);
+                const first = items[0], last = items[items.length - 1];
+                if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+                if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+            }
         });
 
         prevBtn.addEventListener('click', () => {
@@ -545,12 +591,25 @@ if (loadingOverlay) loadingOverlay.classList.remove('hidden');
 
 (async function init() {
   try {
-    const loaded = await loadSources();
+    let feedTimer;
+    let loaded;
+    try {
+      loaded = await Promise.race([
+        loadSources(),
+        new Promise((_, reject) => { feedTimer = setTimeout(() => reject(new Error('Calendar feed timed out')), 15000); })
+      ]);
+    } finally { clearTimeout(feedTimer); }
     EVENTS = loaded.sort((a, b) => new Date(a.start) - new Date(b.start));
     rebuildFilters();
     renderMonth();
+    const status = document.getElementById('calendar-status');
+    if (status && !loaded.length) status.textContent = 'No events to show right now. Check WhatsApp for the latest plans.';
   } catch (err) {
     console.error('❌ Error loading events:', err);
+    const status = document.getElementById('calendar-status');
+    if (status) status.textContent = 'We could not load the calendar. Please reload, or check WhatsApp for updates.';
+    rebuildFilters();
+    renderMonth();
   } finally {
     if (loadingOverlay) {
       loadingOverlay.classList.add('hidden');
@@ -558,3 +617,5 @@ if (loadingOverlay) loadingOverlay.classList.remove('hidden');
     }
   }
 })();
+
+} // Calendar UI; loadSources remains available to the homepage.

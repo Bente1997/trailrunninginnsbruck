@@ -606,6 +606,28 @@ select.filterSelect:focus {
   font-size: 0.95rem;
 }
 
+.past-events {
+  margin-top: 24px;
+  border-top: 1px solid var(--ring);
+}
+
+.past-events summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 10px;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+}
+
+.past-events summary::-webkit-details-marker { display: none; }
+.past-events summary::after { content: '+'; font-size: 1.4rem; }
+.past-events[open] summary::after { content: '\2212'; }
+.past-events summary:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; border-radius: 12px; }
+.past-events-list { padding-top: 4px; }
+
 /* ── Responsive ──────────────────────────── */
 @media (max-width: 768px) {
   .title h1 { font-size: 1rem; }

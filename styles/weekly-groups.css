@@ -1,0 +1,91 @@
+/* Three trail tickets, with the same colours as the crew's group badges. */
+.weekly-groups { padding-block: 100px; margin-bottom: 100px; background: #e9e9de; }
+.groups-intro { display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 12%; margin-bottom: 28px; }
+.groups-intro > p { max-width: 390px; color: #646959; font-size: .95rem; padding-bottom: 5px; }
+.group-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 48px) / 3); gap: 24px; padding: 26px 12px 34px; margin-inline: -12px; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: 12px; scrollbar-width: thin; scrollbar-color: #a6ac96 transparent; }
+.group-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid #dadcd0; background: #fff; border-radius: 24px; padding: 10px; scroll-snap-align: start; rotate: var(--ticket-tilt); transform: translate3d(0,var(--ticket-lift,0px),0); transition: rotate .3s ease; }
+.group-card-snail { --group-paper: #ece6f1; --group-ink: #685573; --ticket-tilt: -2deg; }
+.group-card-discovery { --group-paper: #e6ebdd; --group-ink: #4e5d3d; --ticket-tilt: 1.5deg; }
+.group-card-advanced { --group-paper: #eee5d7; --group-ink: #705b3e; --ticket-tilt: -1deg; }
+.group-art { background: var(--group-paper); color: var(--group-ink); border-radius: 16px; padding: 18px 16px 16px; }
+.group-ticket-top { display: flex; align-items: center; justify-content: space-between; font-size: .72rem; }
+.group-pace { padding: 4px 10px; border: 1px solid currentColor; border-radius: 99px; line-height: 1.4; }
+.group-ticket-number { opacity: .7; font-size: .65rem; letter-spacing: .05em; }
+.group-trail { width: 100%; height: 145px; overflow: visible; margin-block: 8px 4px; }
+.group-trail-ghost { stroke: currentColor; stroke-width: 2; stroke-dasharray: 3 7; opacity: .2; }
+.group-trail-line { stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
+.group-trail-start { fill: var(--group-paper); stroke: currentColor; stroke-width: 2; }
+.group-trail-dot { fill: currentColor; stroke: var(--group-paper); stroke-width: 3; }
+.group-art-caption { display: block; font-size: .64rem; letter-spacing: .09em; text-transform: uppercase; }
+.group-card-body { display: flex; flex: 1; flex-direction: column; padding: 28px 18px 16px; }
+.site-theme .group-card h3 { font-size: clamp(2rem,3vw,2.7rem); letter-spacing: -.05em; }
+.group-metrics { display: flex; flex-wrap: wrap; gap: 16px 28px; padding-block: 24px 20px; }
+.group-metrics dt { color: #717568; font-size: .67rem; margin-bottom: 3px; }
+.group-metrics dd { color: var(--group-ink); font-size: 2rem; letter-spacing: -.055em; line-height: 1.2; }
+.group-metrics dd span { font-size: .72rem; letter-spacing: 0; }
+.group-description { color: #64695b; font-size: .85rem; line-height: 1.7; margin-bottom: 28px; }
+.group-crew { display: flex; gap: 12px; align-items: center; border-top: 1px solid #e7e9df; padding-top: 18px; margin-top: auto; }
+.group-avatars { display: flex; flex-shrink: 0; padding-right: 3px; }
+.group-avatar { height: 34px; width: 34px; border-radius: 50%; border: 2px solid #fff; object-fit: cover; }
+.group-avatar + .group-avatar { margin-left: -8px; }
+.group-avatar-initial { display: grid; place-items: center; background: var(--group-paper); color: var(--group-ink); font-size: .7rem; }
+.group-crew p { font-size: .74rem; line-height: 1.5; }
+.group-crew p > span { display: block; color: #7a7e70; font-size: .65rem; margin-bottom: 2px; }
+.group-example { color: var(--group-ink); font-size: .75rem; margin-top: 16px; }
+.groups-footer { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+.groups-footer > p { color: #707563; font-size: .75rem; }
+.group-controls { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.group-controls[hidden] { display: none; }
+.group-controls > span { color: #6a705f; font-size: .7rem; min-width: 30px; text-align: center; }
+.group-arrow { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid #bfc6ac; background: transparent; font-size: 1.1rem; transition: background .2s; }
+.group-arrow:hover:not(:disabled) { background: #fff; }
+.group-arrow:disabled { opacity: .3; cursor: default; }
+
+/* Official Strava embeds stay intact; the surrounding row can hold more runs. */
+.past-runs { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8%; align-items: center; padding-top: 72px; margin-top: 64px; border-top: 1px solid #cdd1c1; }
+.site-theme .past-runs-intro h3 { font-size: clamp(2rem,3.6vw,3.2rem); }
+.past-runs-intro > p { margin-block: 22px; max-width: 300px; font-size: .95rem; color: #646959; }
+.past-runs-intro .text-link { font-size: .85rem; }
+.past-runs-feed { min-width: 0; }
+.past-runs-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; }
+.past-runs-toolbar[hidden] { display: none; }
+.past-runs-toolbar .group-controls { gap: 9px; }
+.past-runs-position { color: #606952; font-size: .78rem; }
+.past-runs-toggle { height: 42px; padding-inline: 14px; border: 1px solid #bfc6ac; border-radius: 99px; color: #505a42; background: transparent; font-size: .75rem; }
+.past-runs-toggle:hover { background: #fff; }
+.past-runs-track { display: flex; gap: 24px; overflow-x: auto; align-items: flex-start; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: #a6ac96 transparent; padding-bottom: 12px; }
+.past-run { flex: 0 0 min(100%,554px); width: 100%; min-width: 0; scroll-snap-align: start; padding: 10px; background: #fff; border: 1px solid #dadcd0; border-radius: 24px; overflow: hidden; }
+.past-run iframe { max-width: 100%; border-radius: 15px; }
+.past-run-group { margin: 8px 12px 16px; }
+.strava-embed-placeholder { min-height: 180px; border-radius: 15px; background: #f2f3ec; }
+.strava-status { padding: 18px 12px 8px; color: #6b715f; font-size: .8rem; }
+.strava-status:empty { display: none; }
+.past-run-link { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 12px 12px; font-size: .78rem; color: #505a42; }
+.past-run-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.past-runs-hint { color: #707563; font-size: .75rem; margin-top: 12px; }
+/* Settle near a card rather than forcing every small swipe onto the next one. */
+.group-card, .past-run { scroll-snap-stop: always; }
+.group-track.is-scrolling, .past-runs-track.is-scrolling { scroll-snap-type: none; }
+@media (hover:hover) and (pointer:fine) { .group-card:hover { rotate: 0deg; } }
+@media (max-width:1000px) {
+  .group-track { grid-auto-columns: calc((100% - 24px) / 2); }
+  .groups-intro { gap: 7%; }
+  .past-runs { grid-template-columns: .8fr 1.2fr; gap: 5%; }
+}
+@media (max-width:767px) {
+  .weekly-groups { padding-block: 65px; margin-bottom: 70px; }
+  .groups-intro { grid-template-columns: 1fr; gap: 24px; margin-bottom: 8px; }
+  .groups-intro > p { font-size: .9rem; }
+  .group-track { grid-auto-columns: 86%; gap: 18px; padding-top: 24px; }
+  .group-card { --ticket-tilt: 0deg; }
+  .group-card-body { padding: 24px 16px 14px; }
+  .group-trail { height: 125px; }
+  .group-metrics { gap: 28px; }
+  .groups-footer { align-items: start; flex-direction: column; gap: 20px; }
+  .group-controls { align-self: flex-end; }
+  .groups-footer > p { font-size: .7rem; }
+  .past-runs { grid-template-columns: 1fr; gap: 30px; padding-top: 50px; margin-top: 42px; }
+  .past-runs-intro > p { max-width: none; font-size: .9rem; margin-block: 18px; }
+  .past-run { padding: 8px; border-radius: 20px; }
+}
+@media (prefers-reduced-motion:reduce) { .group-card { transform: none; } }
