@@ -85,7 +85,7 @@
           <h3>${escapeHTML(name)}</h3>
           <dl class="route-metrics"><div><dt>Distance</dt><dd>${escapeHTML(route['Distance (km)'] || '?')} km</dd></div><div><dt>Climbing</dt><dd>${escapeHTML(route['Elevation (m)'] || '?')} m D+</dd></div></dl>
           <p class="route-description">${escapeHTML(route.Description || '')}</p>
-          ${map ? `<a class="text-link" href="${escapeHTML(map)}" target="_blank" rel="noopener noreferrer">Open route <span aria-hidden="true">&#8599;</span></a>` : ''}
+          ${map ? `<a class="text-link" href="${escapeHTML(map)}" target="_blank" rel="noopener noreferrer">Open route <span aria-hidden="true">&#8599;&#xfe0e;</span></a>` : ''}
           ${route['Submitted By'] ? `<p class="route-credit">Shared by ${escapeHTML(route['Submitted By'])}</p>` : ''}
         </div>`;
       if (embed) {

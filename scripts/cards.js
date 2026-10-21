@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="run-description event-description">${EventDescription.render(event.beschrijving || 'Good trails and good company. Join us for a run around Innsbruck.')}</div>
           <dl class="run-details"><div><dt>Meeting point</dt><dd>${escapeHTML(event.startplek || 'See calendar for details')}</dd></div><div><dt>Time &middot; Innsbruck</dt><dd>${timeFormat.format(start)} &ndash; ${timeFormat.format(end)}</dd></div>${event.organizer ? `<div><dt>Hosted by</dt><dd>${escapeHTML(event.organizer)}</dd></div>` : ''}</dl>
           <div class="run-action">${bookingURL
-            ? `<a class="text-link" href="${escapeHTML(bookingURL)}" target="_blank" rel="noopener noreferrer">Details &amp; registration <span aria-hidden="true">↗</span></a>`
-            : '<span>No registration required</span><a class="text-link" href="/calendar/">View calendar <span aria-hidden="true">↗</span></a>'}</div>
+            ? `<a class="text-link" href="${escapeHTML(bookingURL)}" target="_blank" rel="noopener noreferrer">Details &amp; registration <span aria-hidden="true">↗&#xfe0e;</span></a>`
+            : '<span>No registration required</span><a class="text-link" href="/calendar/">View calendar <span aria-hidden="true">↗&#xfe0e;</span></a>'}</div>
         </div>
       </article>`;
     }).join('');
