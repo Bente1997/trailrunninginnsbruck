@@ -215,7 +215,7 @@
       frame.dataset.prepared = 'true';
       const group = frame.closest('.past-run').dataset.group;
       frame.title = group ? `Past ${group} group run on Strava` : 'Past DNA Trails community run on Strava';
-      frame.loading = 'lazy';
+      frame.loading = frame.closest('.past-run') === runCards[0] ? 'eager' : 'lazy';
       const status = frame.closest('.past-run').querySelector('.strava-status');
       frame.addEventListener('load', () => { status.textContent = ''; }, { once: true });
     });
@@ -232,10 +232,10 @@
     }, { once: true });
     document.body.append(script);
   }
-  const observer = new IntersectionObserver(entries => {
-    if (!entries.some(entry => entry.isIntersecting)) return;
-    observer.disconnect();
+  // Give the initial page resources priority, then load Strava before visitors scroll here.
+  if (document.readyState === 'complete') {
     loadStrava();
-  }, { rootMargin: '300px' });
-  observer.observe(feed);
+  } else {
+    window.addEventListener('load', loadStrava, { once: true });
+  }
 })();
